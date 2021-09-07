@@ -1,0 +1,389 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <title>1. AppRunnerデプロイ · mirameet</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.20">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-pro-fixed/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-navigator/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-hints/plugin-hints.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Section5.html" />
+    
+    
+    <link rel="prev" href="Section3.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Section1.html">
+            
+                <a href="Section1.html">
+            
+                    
+                    1. デモアプリクローン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Section2.html">
+            
+                <a href="Section2.html">
+            
+                    
+                    2. アプリ動作確認
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Section3.html">
+            
+                <a href="Section3.html">
+            
+                    
+                    3. コンテナレジストリパターン
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1" data-path="Section4.html">
+            
+                <a href="Section4.html">
+            
+                    
+                    1. AppRunnerデプロイ
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Section5.html">
+            
+                <a href="Section5.html">
+            
+                    
+                    4. ソースコードリポジトリパターン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Section7.html">
+            
+                <a href="Section7.html">
+            
+                    
+                    5. ゴミ掃除
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >1. AppRunnerデプロイ</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="App_Runnerデプロイ"><a name="app-runnerデプロイ" class="plugin-anchor" href="#app-runnerデプロイ"><i class="fa fa-link" aria-hidden="true"></i></a>App Runnerデプロイ</h1>
+<p>AWSのApp Runnerの画面に移動し、App Runnerの設定、デプロイを行います。</p>
+<h2 id="AppRunner作成">1. AppRunner作成</h2>
+<p>App Runnerの画面に移動します。
+<img src="img/17.png" alt>
+App Runnerサービスを作成するボタンをクリックします。
+<img src="img/18.png" alt></p>
+<h4 id="-2_App_Runnerサービスの設定、デプロイを行う">1.0.1. -2 App Runnerサービスの設定、デプロイを行う</h4>
+<h5 id="コンテナイメージのURIは、先ほど作成したECRリポジトリを選択する"><a name="コンテナイメージのuriは、先ほど作成したecrリポジトリを選択する" class="plugin-anchor" href="#コンテナイメージのuriは、先ほど作成したecrリポジトリを選択する"><i class="fa fa-link" aria-hidden="true"></i></a>コンテナイメージのURIは、先ほど作成したECRリポジトリを選択する</h5>
+<p><img src="img/19.png" alt></p>
+<h5 id="サービスを設定する"><a name="サービスを設定する" class="plugin-anchor" href="#サービスを設定する"><i class="fa fa-link" aria-hidden="true"></i></a>サービスを設定する</h5>
+<p><img src="img/20.png" alt></p>
+<h5 id="作成とデプロイボタンをクリック"><a name="作成とデプロイボタンをクリック" class="plugin-anchor" href="#作成とデプロイボタンをクリック"><i class="fa fa-link" aria-hidden="true"></i></a>作成とデプロイボタンをクリック</h5>
+<p><img src="img/21.png" alt></p>
+<h3 id="デプロイ内容確認">1.1. デプロイ内容確認</h3>
+<p>デプロイが完了後、App Runner画面の公開されたURLにアクセスし、アプリが動いているかを確認します。<br><img src="img/22.png" alt>  </p>
+<p>アプリが問題なく動作している場合、下記の画面が表示されます。<br><img src="img/23.png" alt>  </p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#App_Runnerデプロイ">App Runnerデプロイ</a></p><li><a href="#AppRunner作成">1. AppRunner作成</a></li><ul><li><a href="#">none</a></li><ul><li><a href="#-2_App_Runnerサービスの設定、デプロイを行う">1.0.1. -2 App Runnerサービスの設定、デプロイを行う</a></li></ul><li><a href="#デプロイ内容確認">1.1. デプロイ内容確認</a></li></ul></ul></div><a href="#AppRunner作成" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Section3.html" class="navigation navigation-prev " aria-label="Previous page: 3. コンテナレジストリパターン">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Section5.html" class="navigation navigation-next " aria-label="Next page: 4. ソースコードリポジトリパターン">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1. AppRunnerデプロイ","level":"1.4.1","depth":2,"next":{"title":"4. ソースコードリポジトリパターン","level":"1.5","depth":1,"path":"Section5.md","ref":"Section5.md","articles":[]},"previous":{"title":"3. コンテナレジストリパターン","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[{"title":"1. AppRunnerデプロイ","level":"1.4.1","depth":2,"path":"Section4.md","ref":"Section4.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"navigator":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section4.md","mtime":"2021-08-04T06:11:35.802Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-04T08:39:12.190Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro-fixed/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro-fixed/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
