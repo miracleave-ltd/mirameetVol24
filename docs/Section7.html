@@ -1,0 +1,429 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <title>5. ゴミ掃除 · mirameet</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 3.6.20">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-pro-fixed/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-navigator/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-hints/plugin-hints.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-insert-logo/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Section5.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索ワードを入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Section1.html">
+            
+                <a href="Section1.html">
+            
+                    
+                    1. デモアプリクローン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Section2.html">
+            
+                <a href="Section2.html">
+            
+                    
+                    2. アプリ動作確認
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Section3.html">
+            
+                <a href="Section3.html">
+            
+                    
+                    3. コンテナレジストリパターン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Section5.html">
+            
+                <a href="Section5.html">
+            
+                    
+                    4. ソースコードリポジトリパターン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="Section7.html">
+            
+                <a href="Section7.html">
+            
+                    
+                    5. ゴミ掃除
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            HonKitで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >5. ゴミ掃除</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="ゴミ掃除"><a name="ゴミ掃除" class="plugin-anchor" href="#ゴミ掃除"><i class="fa fa-link" aria-hidden="true"></i></a>ゴミ掃除</h1>
+<h2 id="App_Runnerサービス削除">1. App Runnerサービス削除</h2>
+<p>次のリンクよりApp Runnerサービス一覧を表示します。<br><a href="https://ap-northeast-1.console.aws.amazon.com/apprunner/home?region=ap-northeast-1#/services" target="_blank">App Runnerサービス一覧</a><br><img src="img/40.png" alt>  </p>
+<p>画面に表示されている指示通り、入力欄に<code>delete</code>を入力し、<code>削除</code>ボタンをクリックします。<br><img src="img/41.png" alt>  </p>
+<p>本日作成したサービスが削除されていることを確認します。
+<img src="img/42.png" alt></p>
+<h2 id="IAM削除">2. IAM削除</h2>
+<h3 id="IAMユーザー削除">2.1. IAMユーザー削除</h3>
+<p>次のリンクよりIAMユーザー一覧を表示します。<br><a href="https://console.aws.amazon.com/iamv2/home#/users" target="_blank">IAMユーザー</a>  </p>
+<p>今回作成したユーザーを選択し、<code>削除</code>ボタンをクリックします。<br><img src="img/51.png" alt>  </p>
+<p>画面に表示されている指示通り、入力欄に<code>meet-up-app-runner-user</code>を入力し、<code>削除</code>ボタンをクリックします。<br><img src="img/52.png" alt>  </p>
+<p>対象のユーザーが削除されていることを確認します。<br><img src="img/53.png" alt>  </p>
+<h3 id="IAMポリシー削除">2.2. IAMポリシー削除</h3>
+<p>次のリンクよりIAMポリシー一覧を表示します。<br><a href="https://console.aws.amazon.com/iamv2/home?#/policies" target="_blank">IAMポリシー</a>  </p>
+<p>作成したIAMポリシーを選択し、<code>アクション</code>ボタンのドロップダウンより<code>削除</code>ボタンをクリックします。<br><img src="img/54.png" alt>  </p>
+<p>画面に表示されている指示通り、入力欄に<code>AccessEcrForAppRunner</code>を入力し、<code>削除</code>ボタンをクリックします。<br><img src="img/55.png" alt>  </p>
+<p>検索欄に<code>AccessEcrForAppRunner</code>を入力し、対象のポリシーが削除されていることを確認します。<br><img src="img/56.png" alt> </p>
+<h3 id="IAMロール削除">2.3. IAMロール削除</h3>
+<p>次のリンクよりIAMロール一覧を表示します。<br><a href="https://console.aws.amazon.com/iamv2/home#/roles" target="_blank">IAMロール</a>  </p>
+<p>作成したIAMロールを選択し、<code>削除</code>ボタンをクリックします。<br><img src="https://user-images.githubusercontent.com/55343055/129122840-94fe88c5-7983-4c1b-8dba-681924b14459.png" alt="57"></p>
+<p>画面に表示されている指示通り、入力欄に<code>AppRunnerECRAccessRole</code>を入力し、<code>削除</code>ボタンをクリックします。<br><img src="https://user-images.githubusercontent.com/55343055/129122877-88a602a4-4533-4d0f-9e21-8e657497abd3.png" alt="58"></p>
+<h2 id="ローカルに構築したDockerイメージ削除">3. ローカルに構築したDockerイメージ削除</h2>
+<h3 id="コンテナの停止">3.1. コンテナの停止</h3>
+<p>次のコマンドを実行し、コンテナ状態を確認します。  </p>
+<pre><code>docker ps
+---
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS          PORTS                                       NAMES
+e572bd192f8d   app-runner-example   &quot;docker-entrypoint.s…&quot;   00 seconds ago   Up 00 seconds   0.0.0.0:3333-&gt;3333/tcp, :::3333-&gt;3333/tcp   nice_kare
+</code></pre><p>上記で実行した<code>CONTAINER ID</code>を次のコマンドで利用します。<br>起動中のコンテナを停止します。  </p>
+<pre><code>docker stop [CONTAINER ID]
+</code></pre><h3 id="イメージの削除">3.2. イメージの削除</h3>
+<p>次のコマンドを実行し、作成したコンテナイメージを確認します</p>
+<pre><code>docker images
+</code></pre><p>まずは、ビルドで作成したコンテナイメージを削除します。（イメージ名が<code>app-runner-example</code>のイメージ） </p>
+<p>注意：[IMAGE ID]には、上記で実行した際に表示された、表示結果の左から３番目のランダムな文字列がIMAGE IDです。</p>
+<pre><code>docker rmi -f [IMAGE ID]
+</code></pre><p>次のメッセージが表示されれば、成功です。  </p>
+<blockquote>
+<p>Untagged: app-runner-example...  </p>
+</blockquote>
+<p><br></p>
+<p>次にECRにプッシュしたイメージを削除します。 （イメージ名が<code>000000000000.dkr.ecr.ap-northeast-1.amazonaws.com/app-runner-example</code>の形式になっているイメージ） </p>
+<p>注意：[IMAGE ID]には、上記で実行した際に表示された、表示結果の左から３番目のランダムな文字列がIMAGE IDです。</p>
+<pre><code>docker rmi -f [IMAGE ID]
+</code></pre><p>次のメッセージが表示されれば、成功です。  </p>
+<blockquote>
+<p>Untagged: 000000.dkr.ecr.ap-northeast-1.amazonaws.com/app-runner-example...<br>Deleted: sha256:f382b74e...  </p>
+</blockquote>
+<p><br></p>
+<p>最後にECRプッシュする際に使用したAWS CLIのイメージを削除します。（イメージ名が<code>amazon/aws-cli</code>のイメージ）</p>
+<p>注意：[IMAGE ID]には、上記で実行した際に表示された、表示結果の左から３番目のランダムな文字列がIMAGE IDです。</p>
+<pre><code>docker rmi -f [IMAGE ID]
+</code></pre><p>次のメッセージが表示されれば、成功です。</p>
+<blockquote>
+<p>Untagged: amazon/aws-cli:latest
+Untagged: amazon/aws-cli@sha256:8b40031b3b3a7ed06f0e4c6b7163d5045c242cf54b635901d87e05c6bd7b193c...</p>
+</blockquote>
+<h2 id="フォルダの削除">4. フォルダの削除</h2>
+<p>次のコマンドでフォルダを完全に削除します。</p>
+<p><strong>Macの場合</strong></p>
+<pre><code># 一つ上の階層に移動
+cd ../
+# meet-up-20_app-runnerフォルダが存在しているかを確認
+ls
+# meet-up-20_app-runnerフォルダが存在している場合、下記コマンドを実行しフォルダを削除
+rm -rf meet-up-20_app-runner
+</code></pre><p><strong>Windowsの場合</strong></p>
+<pre><code># 一つ上の階層に移動
+cd ../
+# meet-up-20_app-runnerフォルダが存在しているかを確認
+dir
+# meet-up-20_app-runnerフォルダが存在している場合、下記コマンドを実行しフォルダを削除
+rd /s /q meet-up-20_app-runner
+</code></pre><p>以上。</p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#ゴミ掃除">ゴミ掃除</a></p><li><a href="#App_Runnerサービス削除">1. App Runnerサービス削除</a></li><li><a href="#IAM削除">2. IAM削除</a></li><ul><li><a href="#IAMユーザー削除">2.1. IAMユーザー削除</a></li><li><a href="#IAMポリシー削除">2.2. IAMポリシー削除</a></li><li><a href="#IAMロール削除">2.3. IAMロール削除</a></li></ul><li><a href="#ローカルに構築したDockerイメージ削除">3. ローカルに構築したDockerイメージ削除</a></li><ul><li><a href="#コンテナの停止">3.1. コンテナの停止</a></li><li><a href="#イメージの削除">3.2. イメージの削除</a></li></ul><li><a href="#フォルダの削除">4. フォルダの削除</a></li></ul></div><a href="#App_Runnerサービス削除" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Section5.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 4. ソースコードリポジトリパターン">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"5. ゴミ掃除","level":"1.6","depth":1,"previous":{"title":"4. ソースコードリポジトリパターン","level":"1.5","depth":1,"path":"Section5.md","ref":"Section5.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section7.md","mtime":"2021-08-12T02:04:39.898Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-12T02:05:13.560Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro-fixed/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-pro-fixed/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-hide-published-with/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-collapsible-chapters/collapsible-chapters.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
