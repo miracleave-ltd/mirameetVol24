@@ -8,7 +8,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATIO
 # GCSクライアント変数宣言
 client = storage.Client()
 
-# GCSバケット取得
+# GSバケット取得
 bucket = client.get_bucket(OperationObject.bucket_name)
 
 # CSVファイルアップロード
