@@ -6,11 +6,11 @@ GOOGLE_APPLICATION_CREDENTIALS='./credential/key.json'
 # CSVコピー元
 source_file_name = './csv/gcs-example.csv'
 
-url_gs_example_csv="gs://mira-example/gcs-example.csv"
-out_url_gs_example_csv="gs://mira-example/out-gcs-example.csv"
-
 # GS バケット
 bucket_name = "mira-example"
+
+url_gs_example_csv="gs://mira-example/gcs-example.csv"
+out_url_gs_example_csv="gs://mira-example/out-gcs-example.csv"
 
 # 操作テーブル
 project_id = "erudite-pride-323410" # 要変更
