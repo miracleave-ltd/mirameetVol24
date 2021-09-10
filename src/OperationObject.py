@@ -16,4 +16,3 @@ out_url_gs_example_csv="gs://mira-example/out-gcs-example.csv"
 project_id = "erudite-pride-323410" # 要変更
 dataset_id = "mira_vol24"
 table_id = "mira_example"
-
