@@ -9,6 +9,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATIO
 client = bigquery.Client(OperationObject.project_id)
 table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
+#　データ取得結果をGSバケットに配置 
 extract_job = client.extract_table(
     table_id,
     OperationObject.out_url_gs_example_csv,
