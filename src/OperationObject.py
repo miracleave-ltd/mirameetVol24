@@ -15,6 +15,6 @@ url_gs_example_csv="gs://mira-example/gcs-example.csv"
 out_url_gs_example_csv="gs://mira-example/out-gcs-example.csv"
 
 # 操作テーブル
-project_id = "erudite-pride-323410" # （使用すｒプロジェクトＩＤに変更してください）
+project_id = "erudite-pride-323410" # （使用するプロジェクトＩＤに変更してください）
 dataset_id = "mira_vol24"
 table_id = "mira_example"
