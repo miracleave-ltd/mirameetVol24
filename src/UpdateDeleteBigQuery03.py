@@ -19,5 +19,5 @@ deleteQuery = "DELETE `{0}.{1}.{2}` WHERE id = 3".\
 # SQL実行
 deleteRows = client.query(deleteQuery).result()
 
-print("deleted ID=3.")
+print("Deleted ID=3.")
 
