@@ -3,7 +3,7 @@
 <html lang="ja" >
     <head>
         <meta charset="UTF-8">
-        <title>3. 各処理の実行と処理結果の確認 · mirameet</title>
+        <title>3. コンテナレジストリパターン · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.20">
@@ -76,6 +76,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="Section5.html" />
+    
     
     <link rel="prev" href="Section2.html" />
     
@@ -124,7 +126,7 @@
                 <a href="Section1.html">
             
                     
-                    1. 事前準備内容の確認
+                    1. デモアプリクローン
             
                 </a>
             
@@ -137,7 +139,7 @@
                 <a href="Section2.html">
             
                     
-                    2. GCP各種サービスの設定
+                    2. アプリ動作確認
             
                 </a>
             
@@ -150,7 +152,33 @@
                 <a href="Section3.html">
             
                     
-                    3. 各処理の実行と処理結果の確認
+                    3. コンテナレジストリパターン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Section5.html">
+            
+                <a href="Section5.html">
+            
+                    
+                    4. ソースコードリポジトリパターン
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Section7.html">
+            
+                <a href="Section7.html">
+            
+                    
+                    5. ゴミ掃除
             
                 </a>
             
@@ -188,7 +216,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >3. 各処理の実行と処理結果の確認</a>
+        <a href="." >3. コンテナレジストリパターン</a>
     </h1>
 </div>
 
@@ -203,26 +231,122 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="各処理の実行と処理結果の確認"><a name="各処理の実行と処理結果の確認" class="plugin-anchor" href="#各処理の実行と処理結果の確認"><i class="fa fa-link" aria-hidden="true"></i></a>各処理の実行と処理結果の確認</h1>
-<h2 id="カレントディレクトリの移動">1. カレントディレクトリの移動</h2>
-<pre><code>cd ～～～\mirameet_vol24
-</code></pre><h2 id="GcsUploader01_pyの実行">2. GcsUploader01.pyの実行</h2>
-<pre><code>python GcsUploader01.py
-</code></pre><p><img src="img/01-2.png" alt><br>CSVファイルがGCSにアップロードされていることを確認。
-<img src="img/01.png" alt>  </p>
-<h2 id="GcsToBigQuery02_pyの実行">3. GcsToBigQuery02.pyの実行</h2>
-<pre><code>python GcsToBigQuery02.py
-</code></pre><p><img src="img/02-2.png" alt><br>CSVの中のデータがBigQueryにインサートされていることを確認。
-<img src="img/02.png" alt>  </p>
-<h2 id="UpdateDeleteBigQuery03_pyの実行">4. UpdateDeleteBigQuery03.pyの実行</h2>
-<pre><code>python UpdateDeleteBigQuery03.py
-</code></pre><p><img src="img/03-2.png" alt><br>データが更新・削除されていることを確認。
-<img src="img/03.png" alt>  </p>
-<h2 id="ExportBigQuery04_pyの実行">5. ExportBigQuery04.pyの実行</h2>
-<pre><code>python ExportBigQuery04.py
-</code></pre><p><img src="img/04-2.png" alt><br>BigQueryのデータが「out-gcs-example.csv」ファイルとしてGCSに出力されていることを確認。
-<img src="img/04.png" alt>  </p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#各処理の実行と処理結果の確認">各処理の実行と処理結果の確認</a></p><li><a href="#カレントディレクトリの移動">1. カレントディレクトリの移動</a></li><li><a href="#GcsUploader01_pyの実行">2. GcsUploader01.pyの実行</a></li><li><a href="#GcsToBigQuery02_pyの実行">3. GcsToBigQuery02.pyの実行</a></li><li><a href="#UpdateDeleteBigQuery03_pyの実行">4. UpdateDeleteBigQuery03.pyの実行</a></li><li><a href="#ExportBigQuery04_pyの実行">5. ExportBigQuery04.pyの実行</a></li></ul></div><a href="#カレントディレクトリの移動" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                <h1 id="コンテナレジストリパターン"><a name="コンテナレジストリパターン" class="plugin-anchor" href="#コンテナレジストリパターン"><i class="fa fa-link" aria-hidden="true"></i></a>コンテナレジストリパターン</h1>
+<p>この手順では序盤について、次の手順を進めていきます。<br><img src="img/47.png" alt>  </p>
+<p>今回はコンテナレジストリにECRを利用します。  </p>
+<h2 id="ECRリポジトリ作成">1. ECRリポジトリ作成</h2>
+<p>AWSにログインし、検索欄から「ECR」と検索します。<br>※次のリンクでも表示します。<br>　<a href="https://ap-northeast-1.console.aws.amazon.com/ecr/repositories?region=ap-northeast-1" target="_blank">Amazon ECR Repositories</a><br><img src="img/5.png" alt><br>リポジトリを作成ボタンをクリックします。 </p>
+<p><strong>注意：リージョンが東京リージョンになっているかを確認してください。東京リージョン以外の場合はリージョンを東京に選択してください。</strong>
+<img src="img/6.png" alt>
+リポジトリ名に<code>app-runner-example</code>と入力します。
+<img src="img/7.png" alt></p>
+<h2 id="ECR用IAM_User作成">2. ECR用IAM User作成</h2>
+<p>ローカルからECRにpushするためのIAM Userを作成します。<br><div class="alert alert-warning hints-alert"><div class="hints-icon"><i class="fa fa-wrench"></i></div><div class="hints-container"><p><strong>注意</strong>：すでに「AdministratorAccess」権限を持ち、プログラムのアクセスの権限のあるユーザーを作成されている場合は、このステップを飛ばしてください。</p>
+</div></div></p>
+<h3 id="ECR用ポリシー作成">2.1. ECR用ポリシー作成</h3>
+<p>IAMの画面に移動し、左メニューからポリシーを選択し、ポリシーを作成ボタンをクリックします。<br><img src="img/8.png" alt></p>
+<p>JSONを選択、下記をコピーし貼り付けてください。</p>
+<pre><code>{
+    &quot;Version&quot;: &quot;2012-10-17&quot;,
+    &quot;Statement&quot;: [
+        {
+            &quot;Effect&quot;: &quot;Allow&quot;,
+            &quot;Action&quot;: [
+                &quot;ecr:*&quot;
+            ],
+            &quot;Resource&quot;: &quot;*&quot;
+        }
+    ]
+}
+</code></pre><p>貼り付け後、<code>次のステップ：タグ</code>ボタンをクリックします。
+<img src="img/9.png" alt></p>
+<p>タグの設定は不要です。<br><code>次のステップ：確認</code>ボタンをクリックします。<br>次の設定値を入力し、<code>ポリシーの作成</code>ボタンをクリックし、ポリシーを作成します。</p>
+<blockquote>
+<p>名前： <code>AccessEcrForAppRunner</code></p>
+</blockquote>
+<p><img src="img/10.png" alt></p>
+<h3 id="IAM_User作成">2.2. IAM User作成</h3>
+<p>左メニューからユーザーを選択し、<code>ユーザーを追加</code>ボタンをクリックします。
+<img src="img/11.png" alt></p>
+<p>次の設定値を入力し、<code>次のステップ：アクセス制限</code>ボタンをクリックします。  </p>
+<blockquote>
+<p>ユーザー名： <code>meet-up-app-runner-user</code><br>アクセスの種類： プログラムによるアクセスにチェックします。</p>
+</blockquote>
+<p><img src="img/12.png" alt></p>
+<p><code>既存のポリシーを直接アタッチ</code>を選択し、「AccessEcrForAppRunner」にチェックを入れ、確認画面までスキップします。<br><img src="img/13.png" alt></p>
+<p>確認画面で<code>.csvのダウンロード</code>ボタンをクリックし、IAM Userの認証情報が記載されているCSVをダウンロードします。<br><img src="img/14.png" alt></p>
+<h2 id="Dockerイメージプッシュ">3. Dockerイメージプッシュ</h2>
+<h3 id="AWS認証情報の設定">3.1. AWS認証情報の設定</h3>
+<p>aws-cliを利用して、ECRにイメージをプッシュします。<br>それに伴い、credentialsの設定を行います。  </p>
+<pre><code># awsフォルダを作成
+mkdir aws
+</code></pre><hr>
+<p>先ほど、CSVでダウンロードしたIAM Userの認証情報(アクセスID,アクセスキー)を次のイコールの後に値を設定します。  </p>
+<p><strong>Macの場合</strong></p>
+<pre><code>cat &lt;&lt;EOF &gt; aws/credentials
+[default]
+aws_access_key_id = [Access key ID]
+aws_secret_access_key = [Secret access key]
+EOF
+</code></pre><p><strong>Windowsの場合</strong></p>
+<pre><code>(
+  echo [default]
+  echo aws_access_key_id = [Access key ID]
+  echo aws_secret_access_key = [Secret access key]
+) &gt;&gt; aws/credentials
+</code></pre><hr>
+<p>configの設定をします。<br><strong>Macの場合</strong></p>
+<pre><code>cat &lt;&lt;EOF &gt; aws/config
+[default]
+region = ap-northeast-1
+output = json
+EOF
+</code></pre><p><strong>Windowsの場合</strong></p>
+<pre><code>(
+  echo [default]
+  echo region = ap-northeast-1
+  echo output = json
+) &gt;&gt; aws/config
+</code></pre><hr>
+<p>ECR画面に移動し、プッシュコマンドを確認し、ECRにpushします。<br>今回はAWS CLIをローカルにダウンロードせず、Dockerを通してAWS CLIコマンドを実行します。  </p>
+<p>プッシュコマンドを確認します。<br>後続のECRイメージプッシュ手順で利用します。<br><img src="img/15.png" alt></p>
+<p><strong>注意：Windowユーザーの方がプッシュコマンドを利用する際は、WindowsのプッシュコマンドではなくmacOS/Linuxのプッシュコマンドを使用してください。</strong></p>
+<p><img src="img/16.png" alt></p>
+<h3 id="ECRイメージプッシュ">3.2. ECRイメージプッシュ</h3>
+<ol>
+<li><p>AWS CLIでAWSにログインします。<br><strong>Macの場合</strong><br>例：<code>docker run --rm -ti -v $(pwd)/aws:/root/.aws -v $(pwd):/aws amazon/aws-cli ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 0000000000.dkr.ecr.ap-northeast-1.amazonaws.com</code></p>
+<pre><code>docker run --rm -ti -v $(pwd)/aws:/root/.aws -v $(pwd):/aws amazon/aws-cli [app-runner-exampleのプッシュコマンドの１をコピー（先頭のawsは省く）]
+</code></pre><p><strong>Windowsの場合</strong><br>例：<code>docker run --rm -ti -v %cd%/aws:/root/.aws -v %cd%:/aws amazon/aws-cli ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 0000000000.dkr.ecr.ap-northeast-1.amazonaws.com</code></p>
+<pre><code>docker run --rm -ti -v %cd%/aws:/root/.aws -v %cd%:/aws amazon/aws-cli [app-runner-exampleのプッシュコマンドの１をコピー（先頭のawsは省く）]
+</code></pre><p>ログインが成功すると次のメッセージが表示されます。  </p>
+<blockquote>
+<p>Login Succeeded  </p>
+</blockquote>
+</li>
+<li>app-runner-exampleのプッシュコマンドの3を実行します。<br>例：<code>docker tag app-runner-example:latest 0000000000.dkr.ecr.ap-northeast-1.amazonaws.com/app-runner-example:latest</code>  </li>
+<li>app-runner-exampleのプッシュコマンドの4を実行します。<br>例：<code>docker push 0000000000.dkr.ecr.ap-northeast-1.amazonaws.com/app-runner-example:latest</code><br>プッシュコマンドが成功すると、次のメッセージが表示されます。  <blockquote>
+<p>The push refers to repository [0000000000.dkr.ecr.ap-northeast-1.amazonaws.com/app-runner-example]<br>00000d76f0b8: Pushed<br>00000cbf4ab0: Layer already exists<br>...<br>latest: digest: sha256:97c0000000000... size: 3051  </p>
+</blockquote>
+</li>
+</ol>
+<h2 id="App_Runnerデプロイ">4. App Runnerデプロイ</h2>
+<p>AWSのApp Runnerの画面に移動し、App Runnerの設定、デプロイを行います。<br>以降の手順では次の手順を進めていきます。<br><img src="img/48.png" alt>  </p>
+<h3 id="AppRunner作成">4.1. AppRunner作成</h3>
+<p>App Runnerの画面に移動します。
+※次のリンクでも表示します。<br>　<a href="https://ap-northeast-1.console.aws.amazon.com/apprunner/home?region=ap-northeast-1#/welcome" target="_blank">AWS App Runner</a><br><img src="img/17.png" alt>
+App Runnerサービスを作成するボタンをクリックします。
+<img src="img/18.png" alt></p>
+<h4 id="App_Runnerサービスの設定、デプロイを行行います。">4.1.1. App Runnerサービスの設定、デプロイを行行います。</h4>
+<h5 id="コンテナイメージのURIは、先ほど作成したECRリポジトリを選択します。"><a name="コンテナイメージのuriは、先ほど作成したecrリポジトリを選択します。" class="plugin-anchor" href="#コンテナイメージのuriは、先ほど作成したecrリポジトリを選択します。"><i class="fa fa-link" aria-hidden="true"></i></a>コンテナイメージのURIは、先ほど作成したECRリポジトリを選択します。</h5>
+<p><img src="img/19.png" alt></p>
+<h5 id="サービスを設定します。"><a name="サービスを設定します。" class="plugin-anchor" href="#サービスを設定します。"><i class="fa fa-link" aria-hidden="true"></i></a>サービスを設定します。</h5>
+<p><img src="img/20.png" alt></p>
+<h5 id="作成とデプロイボタンをクリックします。"><a name="作成とデプロイボタンをクリックします。" class="plugin-anchor" href="#作成とデプロイボタンをクリックします。"><i class="fa fa-link" aria-hidden="true"></i></a>作成とデプロイボタンをクリックします。</h5>
+<p><img src="img/21.png" alt></p>
+<h3 id="デプロイ内容確認">4.2. デプロイ内容確認</h3>
+<p>デプロイが完了後、App Runner画面の公開されたURLにアクセスし、アプリが動いているかを確認します。<br><img src="img/22.png" alt>  </p>
+<p>アプリが問題なく動作している場合、下記の画面が表示されます。<br><img src="img/23.png" alt>  </p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#コンテナレジストリパターン">コンテナレジストリパターン</a></p><li><a href="#ECRリポジトリ作成">1. ECRリポジトリ作成</a></li><li><a href="#ECR用IAM_User作成">2. ECR用IAM User作成</a></li><ul><li><a href="#ECR用ポリシー作成">2.1. ECR用ポリシー作成</a></li><li><a href="#IAM_User作成">2.2. IAM User作成</a></li></ul><li><a href="#Dockerイメージプッシュ">3. Dockerイメージプッシュ</a></li><ul><li><a href="#AWS認証情報の設定">3.1. AWS認証情報の設定</a></li><li><a href="#ECRイメージプッシュ">3.2. ECRイメージプッシュ</a></li></ul><li><a href="#App_Runnerデプロイ">4. App Runnerデプロイ</a></li><ul><li><a href="#AppRunner作成">4.1. AppRunner作成</a></li><ul><li><a href="#App_Runnerサービスの設定、デプロイを行行います。">4.1.1. App Runnerサービスの設定、デプロイを行行います。</a></li></ul><li><a href="#デプロイ内容確認">4.2. デプロイ内容確認</a></li></ul></ul></div><a href="#ECRリポジトリ作成" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -249,10 +373,14 @@
 
             
                 
-                <a href="Section2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2. GCP各種サービスの設定">
+                <a href="Section2.html" class="navigation navigation-prev " aria-label="Previous page: 2. アプリ動作確認">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="Section5.html" class="navigation navigation-next " aria-label="Next page: 4. ソースコードリポジトリパターン">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -261,7 +389,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3. 各処理の実行と処理結果の確認","level":"1.4","depth":1,"previous":{"title":"2. GCP各種サービスの設定","level":"1.3","depth":1,"path":"Section2.md","ref":"Section2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section3.md","mtime":"2021-09-07T00:19:15.424Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-07T02:26:16.140Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3. コンテナレジストリパターン","level":"1.4","depth":1,"next":{"title":"4. ソースコードリポジトリパターン","level":"1.5","depth":1,"path":"Section5.md","ref":"Section5.md","articles":[]},"previous":{"title":"2. アプリ動作確認","level":"1.3","depth":1,"path":"Section2.md","ref":"Section2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section3.md","mtime":"2021-08-12T02:00:22.790Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-12T02:05:13.560Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -124,7 +124,7 @@
                 <a href="Section1.html">
             
                     
-                    1. 事前準備内容の確認
+                    0. 事前準備内容の確認
             
                 </a>
             
@@ -137,7 +137,7 @@
                 <a href="Section2.html">
             
                     
-                    2. GCP各種サービスの設定
+                    1. GCP各種サービスの設定
             
                 </a>
             
@@ -148,6 +148,19 @@
         <li class="chapter " data-level="1.4" data-path="Section3.html">
             
                 <a href="Section3.html">
+            
+                    
+                    2. ダウンロードしたファイルの解凍と設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Section4.html">
+            
+                <a href="Section4.html">
             
                     
                     3. 各処理の実行と処理結果の確認
@@ -203,33 +216,26 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="GCP初心者必見！_PythonでBigQueryの操作をしてみよう！"><a name="gcp初心者必見！-pythonでbigqueryの操作をしてみよう！" class="plugin-anchor" href="#gcp初心者必見！-pythonでbigqueryの操作をしてみよう！"><i class="fa fa-link" aria-hidden="true"></i></a>GCP初心者必見！ PythonでBigQueryの操作をしてみよう！<br></h1>
-<p>第24回目の開催となるmirameetの題材はGCP初心者必見★
-今回のハンズオンはGoogle Cloud Storageの開発Tipsも取り込んだ内容になっています！</p>
+                                <h1 id="GCP初心者必見！_PythonでBigQueryの操作をしてみよう！"><a name="gcp初心者必見！-pythonでbigqueryの操作をしてみよう！" class="plugin-anchor" href="#gcp初心者必見！-pythonでbigqueryの操作をしてみよう！"><i class="fa fa-link" aria-hidden="true"></i></a>GCP初心者必見！ PythonでBigQueryの操作をしてみよう！</h1>
+<p>第24回目の開催となるmirameetの題材はGCP初心者必見★<br>今回のハンズオンはGoogle Cloud Storageの開発Tipsも取り込んだ内容になっています！  </p>
+<hr>
 <h2 id="事前準備">1. 事前準備</h2>
 <ul>
 <li>Dockerインストール</li>
-<li>GitHubアカウント</li>
-<li>GCPアカウント</li>
+<li>GitHubアカウントの作成</li>
+<li>GCPアカウントの作成</li>
 </ul>
 <h2 id="今回の流れ">2. 今回の流れ</h2>
-<p>CSVファイルをGCS（GoogleCloudStroage）上にアップロード、
-CSVファイルのデータをBigQueryに投入、
-BigQuery内のデータを確認するバッチを作成し実行します。</p>
+<p><img src="img/draw_flow_0.png" alt><br>CSVファイルをGCS（GoogleCloudStroage）上にアップロード、<br>CSVファイルのデータをBigQueryに投入、<br>BigQuery内のデータを確認するバッチを作成し実行します。  </p>
 <h2 id="技術要素">3. 技術要素</h2>
+<p>公式サイトのリンクを記載しておきますので、参考にお使いください。  </p>
 <ul>
 <li><a href="https://console.cloud.google.com/?hl=ja" target="_blank">GCP</a></li>
 <li><a href="https://www.docker.com/" target="_blank">Docker</a></li>
 <li><a href="https://www.python.jp/" target="_blank">python</a></li>
 </ul>
 <h2 id="手順">4. 手順</h2>
-<p>全体手順としては次の流れで進めます。
-<img src="img/45.png" alt>  </p>
-<ul>
-<li>①事前準備内容の確認</li>
-<li>②GCP各種サービスの設定</li>
-<li>③各処理の実行と処理結果の確認</li>
-</ul>
+<p>全体手順としては次の流れで進めます。<br> 0.事前準備内容の確認<br> 1.GCP各種サービスの設定<br> 2.ダウンロードしたファイルの解凍と設定<br> 3.各処理の実行と処理結果の確認  </p>
 <hr>
 <p>Windows/Macの方向けに作成しております。<br>コマンドラインツールは、個々の利用しているもので良いのですが、今回の手順は次のものを利用します。  </p>
 <ul>
@@ -264,7 +270,7 @@ BigQuery内のデータを確認するバッチを作成し実行します。</p
             
                 
                 
-                <a href="Section1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 1. 事前準備内容の確認">
+                <a href="Section1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 0. 事前準備内容の確認">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -275,7 +281,7 @@ BigQuery内のデータを確認するバッチを作成し実行します。</p
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"はじめに","level":"1.1","depth":1,"next":{"title":"1. 事前準備内容の確認","level":"1.2","depth":1,"path":"Section1.md","ref":"Section1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"README.md","mtime":"2021-09-07T00:19:15.394Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-07T02:26:16.140Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"はじめに","level":"1.1","depth":1,"next":{"title":"0. 事前準備内容の確認","level":"1.2","depth":1,"path":"Section1.md","ref":"Section1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"README.md","mtime":"2021-09-11T00:37:59.093Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T00:44:11.251Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -1,38 +1,79 @@
-# 各処理の実行と処理結果の確認
+# ダウンロードしたファイルの解凍と設定  
+この手順では、GithubからダウンロードしたZipファイルを任意のディレクトリで解凍し、コーディングしていきます。
+![](img/draw_flow_2.png)  
 
-## カレントディレクトリの移動
+## OperationObject.pyの編集  
 ```
-cd ～～～\mirameet_vol24
+# ------------------------------------------------------
+# 変数
+# ------------------------------------------------------
+GOOGLE_APPLICATION_CREDENTIALS='./credential/key.json'
+
+# CSVコピー元
+source_file_name = './csv/gcs-example.csv'
+
+url_gs_example_csv="gs://mira-example/gcs-example.csv" # 要変更1.1
+out_url_gs_example_csv="gs://mira-example/out-gcs-example.csv" # 要変更1.1
+
+# GS バケット
+bucket_name = "mira-example" # 要変更1.2
+
+# 操作テーブル
+project_id = "erudite-pride-323410" # 要変更1.3
+dataset_id = "mira_vol24" # 任意で変更1.4
+table_id = "mira_example" # 任意で変更1.5
+
 ```
 
-## GcsUploader01.pyの実行
+### gsutil URI  
+Cloud Storageのバケットの情報から「gsutil URI」をコピーして置換  
+![](img/GCSバケット詳細.png)
+（例）  
 ```
-python GcsUploader01.py
+url_gs_example_csv="gs://mira-example/gcs-example.csv"
+out_url_gs_example_csv="gs://mira-example/out-gcs-example.csv"
+↓
+url_gs_example_csv="gs://mirameet24_test00/gcs-example.csv"
+out_url_gs_example_csv="gs://mirameet24_test00/out-gcs-example.csv"
 ```
-![](img/01-2.png)  
-CSVファイルがGCSにアップロードされていることを確認。
-![](img/01.png)  
+### bucket_name  
+グローバルに一意になるように作成したバケット名をコピーして置換  
+![](img/GCS04.png)
+（例）  
+```
+bucket_name = "mira-example"
+↓
+bucket_name = "mirameet24_test00"
+```
+### project_id  
+GCPダッシュボードの左上から「プロジェクトID」をコピーして置換  
+![](img/dashboad.png)
+（例）  
+```
+project_id = "erudite-pride-323410"
+↓
+project_id = "neural-sol-325512"
+```
+### dataset_id  
+「データセットID」を変更した場合、任意で設定した値に置換  
+![](img/BQ04.png)
+```
+dataset_id = "mira_vol24"
+```
+### table_id  
+テーブル作成時のクエリから変更した場合、任意で設定した値に置換  
+![](img/BQ06.png)
+```
+table_id = "mira-example"
+```
 
-## GcsToBigQuery02.pyの実行
+## ダウンロードしたjson形式keyファイルの配置  
+・ファイル名を下記に変更  
 ```
-python GcsToBigQuery02.py
+key.json
 ```
-![](img/02-2.png)  
-CSVの中のデータがBigQueryにインサートされていることを確認。
-![](img/02.png)  
+・解凍したZipファイルのcredentialに配置  
+```
+～～～mirameetVol24-main\src\credential
+```
 
-## UpdateDeleteBigQuery03.pyの実行
-```
-python UpdateDeleteBigQuery03.py
-```
-![](img/03-2.png)  
-データが更新・削除されていることを確認。
-![](img/03.png)  
-
-## ExportBigQuery04.pyの実行
-```
-python ExportBigQuery04.py
-```
-![](img/04-2.png)  
-BigQueryのデータが「out-gcs-example.csv」ファイルとしてGCSに出力されていることを確認。
-![](img/04.png)  
