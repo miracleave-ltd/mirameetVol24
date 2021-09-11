@@ -1,30 +1,32 @@
-# GCP初心者必見！ PythonでBigQueryの操作をしてみよう！<br/>
-第24回目の開催となるmirameetの題材はGCP初心者必見★
-今回のハンズオンはGoogle Cloud Storageの開発Tipsも取り込んだ内容になっています！
+# GCP初心者必見！ PythonでBigQueryの操作をしてみよう！  
+第24回目の開催となるmirameetの題材はGCP初心者必見★  
+今回のハンズオンはGoogle Cloud Storageの開発Tipsも取り込んだ内容になっています！  
+
+---
 
 ## 事前準備
 - Dockerインストール
-- GitHubアカウント
-- GCPアカウント
+- GitHubアカウントの作成
+- GCPアカウントの作成
 
 ## 今回の流れ
-CSVファイルをGCS（GoogleCloudStroage）上にアップロード、
-CSVファイルのデータをBigQueryに投入、
-BigQuery内のデータを確認するバッチを作成し実行します。
-
+![](img/draw_flow_0.png)  
+CSVファイルをGCS（GoogleCloudStroage）上にアップロード、  
+CSVファイルのデータをBigQueryに投入、  
+BigQuery内のデータを確認するバッチを作成し実行します。  
 
 ## 技術要素
+公式サイトのリンクを記載しておきますので、参考にお使いください。  
 - [GCP](https://console.cloud.google.com/?hl=ja)
 - [Docker](https://www.docker.com/)
 - [python](https://www.python.jp/)
 
-
 ## 手順
-全体手順としては次の流れで進めます。
-![](img/45.png)  
-- ①事前準備内容の確認
-- ②GCP各種サービスの設定
-- ③各処理の実行と処理結果の確認
+全体手順としては次の流れで進めます。  
+ 0.事前準備内容の確認  
+ 1.GCP各種サービスの設定  
+ 2.ダウンロードしたファイルの解凍と設定  
+ 3.各処理の実行と処理結果の確認  
 
 ---
 

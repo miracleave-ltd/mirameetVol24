@@ -1,106 +1,86 @@
-# GCP各種サービスの設定
-この手順では次の手順を進めていきます。  
+# GCP各種サービスの設定  
+この手順では、GCPサービスの設定を進めていきます。  
+![](img/draw_flow_1.png)  
 
 
-## GCSバケット作成
+## GCSバケット作成  
+左上のハンバーガーメニューから、CloudStorageを選択  
+![](img/GCS01.png)
+「バケットを作成」をクリック
+![](img/GCS02.png)
 グローバルに一意になるように各自設定を行います。  
-![](img/GCSバケット作成1.png)
-![](img/GCSバケット作成2.png)
+![](img/GCS03.png)
 ↓作成完了  
-![](img/GCSバケット作成3.png)
+![](img/GCS04.png)
 
-## GCS内権限設定
-GCSの権限を「ストレージ管理者」に設定します。  
-![](img/GCS内権限設定.png)
-
-## サービスアカウントの作成
-![](img/サービスアカウントの作成1.png)
-![](img/サービスアカウントの作成2.png)
-![](img/サービスアカウントの作成3.png)
+## サービスアカウントの作成  
+左上のハンバーガーメニューから、IAMと権利＞サービスアカウントを選択  
+![](img/IAM01.png)
+任意のサービスアカウント名を入力  
+![](img/IAM02.png)
+![](img/IAM03.png)
 ↓作成完了  
-![](img/サービスアカウントの作成4.png)
+![](img/IAM04.png)
 
-## 秘密鍵ファイルの取得・配置
-![](img/秘密鍵の作成1.png)
-![](img/秘密鍵の作成2.png)
-※json形式のキーをダウンロード  
-![](img/秘密鍵の作成3.png)
-ダウンロードした秘密鍵ファイルを、配置する。  
-・配置先  
-```
-mirameet_vol24\credential
-```
-・ファイル名  
-```
-key.json
-```
-## BigQueryAPIの有効化
-![](img/BigQueryAPIの有効化1.png)
-![](img/BigQueryAPIの有効化2.png)
+## 秘密鍵ファイルの取得・配置  
+作成したサービスアカウントを選択  
+![](img/IAM04.png)
+「キー」タブ＞「新しい鍵を作成」を選択  
+![](img/IAM05.png)
+json形式のキーをダウンロード  
+![](img/IAM06.png)
+↓ダウンロード完了  
+![](img/IAM07.png)
+
+## CloudStorageAPIが有効化されていることを確認  
+画面上部の検索窓に「Cloud Storage」と入力し、検索結果から「Cloud Storage API」を選択  
+![](img/GCS-API01.png)
+※「APIが有効です」となっていることを確認  
+![](img/GCS-API02.png)
+
+## BigQueryAPIが有効化されていることを確認  
+画面上部の検索窓に「BigQuery API」と入力し、検索結果から「BigQuery API」を選択  
+![](img/BQ-API01.png)
+※「APIが有効です」となっていることを確認  
+![](img/BQ-API02.png)
+
+## データセットの作成  
+左上のハンバーガーメニューから、BigQueryを選択  
+![](img/BQ01.png)
+エクスプローラーの中の「▶プロジェクト名」から「データセットを作成」を選択  
+![](img/BQ02.png)
+画面右側に「データセットを作成する」が出てくるので、「データセットID」を入力  
+※今回は「mira_vol24」を指定  
+![](img/BQ03.png)
 ↓完了  
-![](img/BigQueryAPIの有効化3.png)
+「▶プロジェクト名」の下に「▶mira_vol24」が作成される  
+![](img/BQ04.png)
 
-## データセットの作成
-![](img/データセットの作成1.png)
-↓完了  
-![](img/データセットの作成2.png)
-
-## テーブルの作成
-![](img/テーブルの作成1.png)
-\mirameet_vol24\sql\mira_vol24.sql  
-をご自身の作成したデータセットIDに置換してクエリ実行  
-（例）  
+## テーブルの作成  
+作成したデータセット「mira_vol24」に対して、クエリを実行し、テーブルを作成  
+※今回は「mira_example」を指定 
+![](img/BQ04.png)
+下記のクエリは、  
 ```
-CREATE TABLE mira_vol24.mira_example　～～～
-↓
-CREATE TABLE sechico_0905.mira_example　～～～
+データセットID＝mira_vol24
+テーブルID＝mira_example
 ```
+を指定しています  
+```
+CREATE TABLE mira_vol24.mira_example
+(
+	id NUMERIC,
+	mira_code STRING,
+	mira_text STRING,
+	work_date STRING
+)
+```
+※データセットIDを「mira_vol24」から変更した場合は、  
+　ご自身が指定したデータセットIDに置換して実行する必要があります  
+※先ほどDLしたソースファイルの\sql\mira_vol24.sql  の中にも同じSQLがあります  
 ↓実行完了  
-![](img/テーブルの作成2.png)
+![](img/BQ05.png)
+先ほど実行したクエリ通りのフィールドが表示されていることを確認  
+![](img/BQ06.png)
 
-## OperationObject.pyの編集
-### url_gs_example_csv  
-![](img/url_gs_example_csv.png)
-「gsutil URI」をコピーして置換  
-（例）  
-```
-url_gs_example_csv="gs://mira-example/gcs-example.csv"
-↓
-url_gs_example_csv="gs://sechico-mirameet_vol24/gcs-example.csv"
-```
-### bucket_name
-![](img/bucket_name.png)
-「名前」をコピーして置換  
-（例）  
-```
-bucket_name = "mira-example"
-↓
-bucket_name = "sechico-mirameet_vol24"
-```
-### project_id
-![](img/project_id.png)
-```
-「プロジェクトID」をコピーして置換  
-（例）  
-project_id = "erudite-pride-323410"
-↓
-project_id = "sylvan-surf-322711"
-```
-### dataset_id
-![](img/dataset_id.png)
-「データセットID」をコピーして置換  
-（例）  
-```
-dataset_id = "mira_vol24"
-↓
-dataset_id = "sechico_0905"
-```
-### table_id　←テーブル作成時のクエリから変えている場合  
-![](img/table_id.png)
-「テーブルID」をコピーして置換  
-（例）  
-```
-table_id = "mira-example"
-↓
-table_id = "mira-example"　←テーブル作成時のクエリ
-```
+
