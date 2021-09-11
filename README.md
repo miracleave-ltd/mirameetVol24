@@ -1,4 +1,2 @@
 # mirameetVol24
-
-[link](https://miracleave-ltd.github.io/mirameetVol24/){:target="_blank"}
-
+[ハンズオン手順](https://miracleave-ltd.github.io/mirameetVol24/)
