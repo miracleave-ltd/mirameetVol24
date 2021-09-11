@@ -3,7 +3,7 @@
 <html lang="ja" >
     <head>
         <meta charset="UTF-8">
-        <title>2. アプリ動作確認 · mirameet</title>
+        <title>1. GCP各種サービスの設定 · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.20">
@@ -126,7 +126,7 @@
                 <a href="Section1.html">
             
                     
-                    1. デモアプリクローン
+                    0. 事前準備内容の確認
             
                 </a>
             
@@ -139,7 +139,7 @@
                 <a href="Section2.html">
             
                     
-                    2. アプリ動作確認
+                    1. GCP各種サービスの設定
             
                 </a>
             
@@ -152,7 +152,7 @@
                 <a href="Section3.html">
             
                     
-                    3. コンテナレジストリパターン
+                    2. ダウンロードしたファイルの解凍と設定
             
                 </a>
             
@@ -160,25 +160,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="Section5.html">
+        <li class="chapter " data-level="1.5" data-path="Section4.html">
             
-                <a href="Section5.html">
-            
-                    
-                    4. ソースコードリポジトリパターン
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="Section7.html">
-            
-                <a href="Section7.html">
+                <a href="Section4.html">
             
                     
-                    5. ゴミ掃除
+                    3. 各処理の実行と処理結果の確認
             
                 </a>
             
@@ -216,7 +203,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >2. アプリ動作確認</a>
+        <a href="." >1. GCP各種サービスの設定</a>
     </h1>
 </div>
 
@@ -231,19 +218,52 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="デモアプリ動作確認"><a name="デモアプリ動作確認" class="plugin-anchor" href="#デモアプリ動作確認"><i class="fa fa-link" aria-hidden="true"></i></a>デモアプリ動作確認</h1>
-<p>この手順では次の手順を進めていきます。<br><img src="img/50.png" alt>  </p>
-<h2 id="イメージ作成">1. イメージ作成</h2>
-<p>meet-up-20_app-runnerフォルダに移動します。  </p>
-<pre><code>cd meet-up-20_app-runner
-</code></pre><p>Dockerイメージのビルドします。  </p>
-<pre><code>docker build . -t app-runner-example
-</code></pre><h2 id="コンテナの作成、起動">2. コンテナの作成、起動</h2>
-<p>次のコマンドを実行し、ローカル環境でビルドしたイメージを実行します。  </p>
-<pre><code>docker run -p 3333:3333 -d app-runner-example
-</code></pre><h2 id="アプリ確認">3. アプリ確認</h2>
-<p>次のリンクよりデモアプリが動作しているか確認します。<br>URL: <a href="http://localhost:3333" target="_blank">http://localhost:3333</a><br>※実際に動いていれば下記の画面が表示されます。<br><img src="img/4.png" alt></p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#デモアプリ動作確認">デモアプリ動作確認</a></p><li><a href="#イメージ作成">1. イメージ作成</a></li><li><a href="#コンテナの作成、起動">2. コンテナの作成、起動</a></li><li><a href="#アプリ確認">3. アプリ確認</a></li></ul></div><a href="#イメージ作成" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                <h1 id="GCP各種サービスの設定"><a name="gcp各種サービスの設定" class="plugin-anchor" href="#gcp各種サービスの設定"><i class="fa fa-link" aria-hidden="true"></i></a>GCP各種サービスの設定</h1>
+<p>この手順では、GCPサービスの設定を進めていきます。<br><img src="img/draw_flow_1.png" alt>  </p>
+<h2 id="GCSバケット作成">1. GCSバケット作成</h2>
+<p>左上のハンバーガーメニューから、CloudStorageを選択<br><img src="img/GCS01.png" alt>
+「バケットを作成」をクリック
+<img src="img/GCS02.png" alt>
+グローバルに一意になるように各自設定を行います。<br><img src="img/GCS03.png" alt>
+↓作成完了<br><img src="img/GCS04.png" alt></p>
+<h2 id="サービスアカウントの作成">2. サービスアカウントの作成</h2>
+<p>左上のハンバーガーメニューから、IAMと権利＞サービスアカウントを選択<br><img src="img/IAM01.png" alt>
+任意のサービスアカウント名を入力<br><img src="img/IAM02.png" alt>
+<img src="img/IAM03.png" alt>
+↓作成完了<br><img src="img/IAM04.png" alt></p>
+<h2 id="秘密鍵ファイルの取得・配置">3. 秘密鍵ファイルの取得・配置</h2>
+<p>作成したサービスアカウントを選択<br><img src="img/IAM04.png" alt>
+「キー」タブ＞「新しい鍵を作成」を選択<br><img src="img/IAM05.png" alt>
+json形式のキーをダウンロード<br><img src="img/IAM06.png" alt>
+↓ダウンロード完了<br><img src="img/IAM07.png" alt></p>
+<h2 id="CloudStorageAPIが有効化されていることを確認">4. CloudStorageAPIが有効化されていることを確認</h2>
+<p>画面上部の検索窓に「Cloud Storage」と入力し、検索結果から「Cloud Storage API」を選択<br><img src="img/GCS-API01.png" alt>
+※「APIが有効です」となっていることを確認<br><img src="img/GCS-API02.png" alt></p>
+<h2 id="BigQueryAPIが有効化されていることを確認">5. BigQueryAPIが有効化されていることを確認</h2>
+<p>画面上部の検索窓に「BigQuery API」と入力し、検索結果から「BigQuery API」を選択<br><img src="img/BQ-API01.png" alt>
+※「APIが有効です」となっていることを確認<br><img src="img/BQ-API02.png" alt></p>
+<h2 id="データセットの作成">6. データセットの作成</h2>
+<p>左上のハンバーガーメニューから、BigQueryを選択<br><img src="img/BQ01.png" alt>
+エクスプローラーの中の「▶プロジェクト名」から「データセットを作成」を選択<br><img src="img/BQ02.png" alt>
+画面右側に「データセットを作成する」が出てくるので、「データセットID」を入力<br>※今回は「mira_vol24」を指定<br><img src="img/BQ03.png" alt>
+↓完了<br>「▶プロジェクト名」の下に「▶mira_vol24」が作成される<br><img src="img/BQ04.png" alt></p>
+<h2 id="テーブルの作成">7. テーブルの作成</h2>
+<p>作成したデータセット「mira_vol24」に対して、クエリを実行し、テーブルを作成<br>※今回は「mira_example」を指定 
+<img src="img/BQ04.png" alt>
+下記のクエリは、  </p>
+<pre><code>データセットID＝mira_vol24
+テーブルID＝mira_example
+</code></pre><p>を指定しています  </p>
+<pre><code>CREATE TABLE mira_vol24.mira_example
+(
+    id NUMERIC,
+    mira_code STRING,
+    mira_text STRING,
+    work_date STRING
+)
+</code></pre><p>※データセットIDを「mira_vol24」から変更した場合は、<br>　ご自身が指定したデータセットIDに置換して実行する必要があります<br>※先ほどDLしたソースファイルの\sql\mira_vol24.sql  の中にも同じSQLがあります<br>↓実行完了<br><img src="img/BQ05.png" alt>
+先ほど実行したクエリ通りのフィールドが表示されていることを確認<br><img src="img/BQ06.png" alt></p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#GCP各種サービスの設定">GCP各種サービスの設定</a></p><li><a href="#GCSバケット作成">1. GCSバケット作成</a></li><li><a href="#サービスアカウントの作成">2. サービスアカウントの作成</a></li><li><a href="#秘密鍵ファイルの取得・配置">3. 秘密鍵ファイルの取得・配置</a></li><li><a href="#CloudStorageAPIが有効化されていることを確認">4. CloudStorageAPIが有効化されていることを確認</a></li><li><a href="#BigQueryAPIが有効化されていることを確認">5. BigQueryAPIが有効化されていることを確認</a></li><li><a href="#データセットの作成">6. データセットの作成</a></li><li><a href="#テーブルの作成">7. テーブルの作成</a></li></ul></div><a href="#GCSバケット作成" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -270,12 +290,12 @@
 
             
                 
-                <a href="Section1.html" class="navigation navigation-prev " aria-label="Previous page: 1. デモアプリクローン">
+                <a href="Section1.html" class="navigation navigation-prev " aria-label="Previous page: 0. 事前準備内容の確認">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Section3.html" class="navigation navigation-next " aria-label="Next page: 3. コンテナレジストリパターン">
+                <a href="Section3.html" class="navigation navigation-next " aria-label="Next page: 2. ダウンロードしたファイルの解凍と設定">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -286,7 +306,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2. アプリ動作確認","level":"1.3","depth":1,"next":{"title":"3. コンテナレジストリパターン","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[]},"previous":{"title":"1. デモアプリクローン","level":"1.2","depth":1,"path":"Section1.md","ref":"Section1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section2.md","mtime":"2021-08-12T02:00:01.516Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-12T02:05:13.560Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"1. GCP各種サービスの設定","level":"1.3","depth":1,"next":{"title":"2. ダウンロードしたファイルの解凍と設定","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[]},"previous":{"title":"0. 事前準備内容の確認","level":"1.2","depth":1,"path":"Section1.md","ref":"Section1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section2.md","mtime":"2021-09-11T00:43:34.281Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T01:32:04.746Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

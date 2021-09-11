@@ -124,7 +124,7 @@
                 <a href="Section1.html">
             
                     
-                    1. デモアプリクローン
+                    0. 事前準備内容の確認
             
                 </a>
             
@@ -137,7 +137,7 @@
                 <a href="Section2.html">
             
                     
-                    2. アプリ動作確認
+                    1. GCP各種サービスの設定
             
                 </a>
             
@@ -150,7 +150,7 @@
                 <a href="Section3.html">
             
                     
-                    3. コンテナレジストリパターン
+                    2. ダウンロードしたファイルの解凍と設定
             
                 </a>
             
@@ -158,25 +158,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="Section5.html">
+        <li class="chapter " data-level="1.5" data-path="Section4.html">
             
-                <a href="Section5.html">
-            
-                    
-                    4. ソースコードリポジトリパターン
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="Section7.html">
-            
-                <a href="Section7.html">
+                <a href="Section4.html">
             
                     
-                    5. ゴミ掃除
+                    3. 各処理の実行と処理結果の確認
             
                 </a>
             
@@ -229,49 +216,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="面倒臭いことはもうしない！AWS_App_RunnerでWebアプリを爆速でデプロイ！"><a name="面倒臭いことはもうしない！aws-app-runnerでwebアプリを爆速でデプロイ！" class="plugin-anchor" href="#面倒臭いことはもうしない！aws-app-runnerでwebアプリを爆速でデプロイ！"><i class="fa fa-link" aria-hidden="true"></i></a>面倒臭いことはもうしない！<br>AWS App RunnerでWebアプリを爆速でデプロイ！</h1>
+                                <h1 id="GCP初心者必見！_PythonでBigQueryの操作をしてみよう！"><a name="gcp初心者必見！-pythonでbigqueryの操作をしてみよう！" class="plugin-anchor" href="#gcp初心者必見！-pythonでbigqueryの操作をしてみよう！"><i class="fa fa-link" aria-hidden="true"></i></a>GCP初心者必見！ PythonでBigQueryの操作をしてみよう！</h1>
+<p>第24回目の開催となるmirameetの題材はGCP初心者必見★<br>今回のハンズオンはGoogle Cloud Storageの開発Tipsも取り込んだ内容になっています！  </p>
+<hr>
 <h2 id="事前準備">1. 事前準備</h2>
 <ul>
 <li>Dockerインストール</li>
-<li>GitHubアカウント</li>
-<li>AWSアカウント</li>
+<li>GitHubアカウントの作成</li>
+<li>GCPアカウントの作成</li>
 </ul>
 <h2 id="今回の流れ">2. 今回の流れ</h2>
-<p>App Runnerを活用して、アプリケーションを実際にデプロイします。
-<img src="img/43.png" alt><br>大きな流れとしては、次の2パターンを実施します。</p>
+<p><img src="img/draw_flow_0.png" alt><br>CSVファイルをGCS（GoogleCloudStroage）上にアップロード、<br>CSVファイルのデータをBigQueryに投入、<br>BigQuery内のデータを確認するバッチを作成し実行します。  </p>
+<h2 id="技術要素">3. 技術要素</h2>
+<p>公式サイトのリンクを記載しておきますので、参考にお使いください。  </p>
 <ul>
-<li>コンテナレジストリパターン</li>
-<li>ソースコードリポジトリパターン</li>
-</ul>
-<h3 id="技術要素">2.1. 技術要素</h3>
-<ul>
-<li><a href="https://aws.amazon.com/jp/apprunner/" target="_blank">AWS AppRunner</a></li>
-<li><a href="https://aws.amazon.com/jp/ecr/" target="_blank">Amazon Elastic Container Registry: ECR</a></li>
+<li><a href="https://console.cloud.google.com/?hl=ja" target="_blank">GCP</a></li>
 <li><a href="https://www.docker.com/" target="_blank">Docker</a></li>
-<li><a href="https://nodejs.org/ja/" target="_blank">Node.js</a></li>
-<li><a href="https://p5js.org/" target="_blank">p5.js</a></li>
+<li><a href="https://www.python.jp/" target="_blank">python</a></li>
 </ul>
-<h2 id="手順">3. 手順</h2>
-<p>全体手順としては次の流れで進めます。
-<img src="img/45.png" alt>  </p>
-<ul>
-<li>①デモアプリクローン</li>
-<li>②③④デモアプリ動作確認</li>
-<li>⑤⑥⑦⑧⑨コンテナレジストリパターン(Amazon ECRパターン)</li>
-<li>⑩⑪⑫⑬ソースコードリポジトリパターン(GitHubパターン)</li>
-<li>ゴミ掃除</li>
-</ul>
-<h2 id="注意事項">4. 注意事項</h2>
-<p>App Runnerでは、まだ制限が多くあります。<br>利用する際は、事前に制限内容を確認の上、検討をお願いします。<br>ご参考までにロードマップ等ご確認ください。<br><a href="https://github.com/aws/apprunner-roadmap" target="_blank">App Runner - ロードマップ</a>  </p>
-<hr>
-<p>今回は次のCodeDeploy等を利用したパターンは実施しません。<br><img src="img/44.png" alt>  </p>
+<h2 id="手順">4. 手順</h2>
+<p>全体手順としては次の流れで進めます。<br> 0.事前準備内容の確認<br> 1.GCP各種サービスの設定<br> 2.ダウンロードしたファイルの解凍と設定<br> 3.各処理の実行と処理結果の確認  </p>
 <hr>
 <p>Windows/Macの方向けに作成しております。<br>コマンドラインツールは、個々の利用しているもので良いのですが、今回の手順は次のものを利用します。  </p>
 <ul>
 <li>Windows：コマンドプロンプト</li>
 <li>Mac：ターミナル</li>
 </ul>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#面倒臭いことはもうしない！AWS_App_RunnerでWebアプリを爆速でデプロイ！">面倒臭いことはもうしない！AWS App RunnerでWebアプリを爆速でデプロイ！</a></p><li><a href="#事前準備">1. 事前準備</a></li><li><a href="#今回の流れ">2. 今回の流れ</a></li><ul><li><a href="#技術要素">2.1. 技術要素</a></li></ul><li><a href="#手順">3. 手順</a></li><li><a href="#注意事項">4. 注意事項</a></li></ul></div><a href="#事前準備" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#GCP初心者必見！_PythonでBigQueryの操作をしてみよう！">GCP初心者必見！ PythonでBigQueryの操作をしてみよう！</a></p><li><a href="#事前準備">1. 事前準備</a></li><li><a href="#今回の流れ">2. 今回の流れ</a></li><li><a href="#技術要素">3. 技術要素</a></li><li><a href="#手順">4. 手順</a></li></ul></div><a href="#事前準備" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -299,7 +270,7 @@
             
                 
                 
-                <a href="Section1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 1. デモアプリクローン">
+                <a href="Section1.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 0. 事前準備内容の確認">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -310,7 +281,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"はじめに","level":"1.1","depth":1,"next":{"title":"1. デモアプリクローン","level":"1.2","depth":1,"path":"Section1.md","ref":"Section1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"README.md","mtime":"2021-08-12T02:00:01.515Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-12T02:05:13.560Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"はじめに","level":"1.1","depth":1,"next":{"title":"0. 事前準備内容の確認","level":"1.2","depth":1,"path":"Section1.md","ref":"Section1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"README.md","mtime":"2021-09-11T00:37:59.093Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T01:32:04.746Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
