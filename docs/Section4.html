@@ -3,7 +3,7 @@
 <html lang="ja" >
     <head>
         <meta charset="UTF-8">
-        <title>1. AppRunnerデプロイ · mirameet</title>
+        <title>3. 各処理の実行と処理結果の確認 · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.20">
@@ -33,6 +33,10 @@
             
                 
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-hints/plugin-hints.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-insert-logo/plugin.css">
                 
             
                 
@@ -71,8 +75,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
-    
-    <link rel="next" href="Section5.html" />
     
     
     <link rel="prev" href="Section3.html" />
@@ -122,7 +124,7 @@
                 <a href="Section1.html">
             
                     
-                    1. デモアプリクローン
+                    0. 事前準備内容の確認
             
                 </a>
             
@@ -135,7 +137,7 @@
                 <a href="Section2.html">
             
                     
-                    2. アプリ動作確認
+                    1. GCP各種サービスの設定
             
                 </a>
             
@@ -148,52 +150,20 @@
                 <a href="Section3.html">
             
                     
-                    3. コンテナレジストリパターン
+                    2. ダウンロードしたファイルの解凍と設定
             
                 </a>
             
 
             
-            <ul class="articles">
-                
+        </li>
     
-        <li class="chapter active" data-level="1.4.1" data-path="Section4.html">
+        <li class="chapter active" data-level="1.5" data-path="Section4.html">
             
                 <a href="Section4.html">
             
                     
-                    1. AppRunnerデプロイ
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5" data-path="Section5.html">
-            
-                <a href="Section5.html">
-            
-                    
-                    4. ソースコードリポジトリパターン
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="Section7.html">
-            
-                <a href="Section7.html">
-            
-                    
-                    5. ゴミ掃除
+                    3. 各処理の実行と処理結果の確認
             
                 </a>
             
@@ -231,7 +201,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >1. AppRunnerデプロイ</a>
+        <a href="." >3. 各処理の実行と処理結果の確認</a>
     </h1>
 </div>
 
@@ -246,24 +216,140 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="App_Runnerデプロイ"><a name="app-runnerデプロイ" class="plugin-anchor" href="#app-runnerデプロイ"><i class="fa fa-link" aria-hidden="true"></i></a>App Runnerデプロイ</h1>
-<p>AWSのApp Runnerの画面に移動し、App Runnerの設定、デプロイを行います。</p>
-<h2 id="AppRunner作成">1. AppRunner作成</h2>
-<p>App Runnerの画面に移動します。
-<img src="img/17.png" alt>
-App Runnerサービスを作成するボタンをクリックします。
-<img src="img/18.png" alt></p>
-<h4 id="-2_App_Runnerサービスの設定、デプロイを行う">1.0.1. -2 App Runnerサービスの設定、デプロイを行う</h4>
-<h5 id="コンテナイメージのURIは、先ほど作成したECRリポジトリを選択する"><a name="コンテナイメージのuriは、先ほど作成したecrリポジトリを選択する" class="plugin-anchor" href="#コンテナイメージのuriは、先ほど作成したecrリポジトリを選択する"><i class="fa fa-link" aria-hidden="true"></i></a>コンテナイメージのURIは、先ほど作成したECRリポジトリを選択する</h5>
-<p><img src="img/19.png" alt></p>
-<h5 id="サービスを設定する"><a name="サービスを設定する" class="plugin-anchor" href="#サービスを設定する"><i class="fa fa-link" aria-hidden="true"></i></a>サービスを設定する</h5>
-<p><img src="img/20.png" alt></p>
-<h5 id="作成とデプロイボタンをクリック"><a name="作成とデプロイボタンをクリック" class="plugin-anchor" href="#作成とデプロイボタンをクリック"><i class="fa fa-link" aria-hidden="true"></i></a>作成とデプロイボタンをクリック</h5>
-<p><img src="img/21.png" alt></p>
-<h3 id="デプロイ内容確認">1.1. デプロイ内容確認</h3>
-<p>デプロイが完了後、App Runner画面の公開されたURLにアクセスし、アプリが動いているかを確認します。<br><img src="img/22.png" alt>  </p>
-<p>アプリが問題なく動作している場合、下記の画面が表示されます。<br><img src="img/23.png" alt>  </p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#App_Runnerデプロイ">App Runnerデプロイ</a></p><li><a href="#AppRunner作成">1. AppRunner作成</a></li><ul><li><a href="#">none</a></li><ul><li><a href="#-2_App_Runnerサービスの設定、デプロイを行う">1.0.1. -2 App Runnerサービスの設定、デプロイを行う</a></li></ul><li><a href="#デプロイ内容確認">1.1. デプロイ内容確認</a></li></ul></ul></div><a href="#AppRunner作成" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                <h1 id="各処理の実行と処理結果の確認"><a name="各処理の実行と処理結果の確認" class="plugin-anchor" href="#各処理の実行と処理結果の確認"><i class="fa fa-link" aria-hidden="true"></i></a>各処理の実行と処理結果の確認</h1>
+<p>この手順では、コーディングしたソースを動かし、BigQueryのデータを操作していきます。
+<img src="img/draw_flow_3.png" alt>  </p>
+<h2 id="カレントディレクトリの移動">1. カレントディレクトリの移動</h2>
+<p>Zipファイルを解凍したディレクトリまで移動  </p>
+<pre><code>cd ～～～mirameetVol24-main
+</code></pre><h2 id="Dockerでコンテナを起動">2. Dockerでコンテナを起動</h2>
+<pre><code>docker-compose up -d --build
+</code></pre><p><img src="img/docker-build.png" alt>  </p>
+<h2 id="カレントディレクトリの移動">3. カレントディレクトリの移動</h2>
+<p>srcディレクトリまで移動  </p>
+<pre><code>cd ～～～mirameetVol24-main\src
+</code></pre><h2 id="GcsUploader01_pyの実行">4. GcsUploader01.pyの実行</h2>
+<p>★★★画像差し込み★★★<br>CSVデータファイルをGCSバケット上にアップロードする  </p>
+<pre><code>python GcsUploader01.py
+</code></pre><p>▼中身</p>
+<pre><code>import os
+import OperationObject # 操作対象の設定情報取得
+from google.cloud import storage
+
+# GCS認証設定
+os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
+
+# GCSクライアント変数宣言
+client = storage.Client()
+
+# GCSバケット取得
+bucket = client.get_bucket(OperationObject.bucket_name)
+
+# CSVファイルアップロード
+blob = bucket.blob(os.path.basename(OperationObject.source_file_name))
+blob.upload_from_filename(OperationObject.source_file_name)
+
+print(&apos;File {} uploaded to {}.&apos;.format(
+    OperationObject.source_file_name,
+    bucket))
+</code></pre><p>↓正常終了<br><img src="img/01py01.png" alt><br>mirameetVol24-main\src\csvの中の「gcs-example.csv」が、GCSにアップロードされていることを確認<br><img src="img/01py02.png" alt>  </p>
+<h2 id="GcsToBigQuery02_pyの実行">5. GcsToBigQuery02.pyの実行</h2>
+<p>★★★画像差し込み★★★<br>GCSにアップロードしたCSVデータをBigQueryにインサートする  </p>
+<pre><code>python GcsToBigQuery02.py
+</code></pre><p>▼中身</p>
+<pre><code>import os
+import OperationObject # 操作対象の設定情報取得
+from google.cloud import bigquery
+
+# GCS認証設定
+os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
+
+# テーブルIDの取得
+client = bigquery.Client(OperationObject.project_id)
+table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
+
+# テーブル設定宣言
+job_config = bigquery.LoadJobConfig(
+    schema=[
+        bigquery.SchemaField(&quot;id&quot;, &quot;NUMERIC&quot;),
+        bigquery.SchemaField(&quot;mira_code&quot;, &quot;STRING&quot;),
+        bigquery.SchemaField(&quot;mira_text&quot;, &quot;STRING&quot;),
+        bigquery.SchemaField(&quot;work_date&quot;, &quot;STRING&quot;)
+    ],
+    skip_leading_rows=0,
+    # The source format defaults to CSV, so the line below is optional.
+    source_format=bigquery.SourceFormat.CSV,
+)
+# 実行前にテーブルをトランケート
+job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
+
+# GSバケットをロードし、テーブルに登録
+load_job = client.load_table_from_uri(
+    OperationObject.url_gs_example_csv, table_id, job_config=job_config
+)  # Make an API request.
+
+load_job.result()  # Waits for the job to complete.
+
+destination_table = client.get_table(table_id)  # Make an API request.
+print(&quot;Loaded {} rows.&quot;.format(destination_table.num_rows))
+</code></pre><p>↓正常終了<br><img src="img/02py01.png" alt><br>「gcs-example.csv」の中のデータがBigQueryにインサートされていることを確認<br>プレビュータグでデータの中身を確認<br><img src="img/02py03.png" alt>  </p>
+<h2 id="UpdateDeleteBigQuery03_pyの実行">6. UpdateDeleteBigQuery03.pyの実行</h2>
+<p>★★★画像差し込み★★★<br>BigQueryのデータを更新・削除する  </p>
+<pre><code>python UpdateDeleteBigQuery03.py
+</code></pre><p>▼中身</p>
+<pre><code>import os
+import OperationObject # 操作対象の設定情報取得
+from google.cloud import bigquery
+
+# GCS認証設定
+os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
+
+client = bigquery.Client()
+# 更新SQL生成
+updateQuery = &quot;UPDATE `{0}.{1}.{2}` SET mira_text = &apos;更新&apos; WHERE id = 2&quot;.\
+    format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
+# SQL実行
+updateRows = client.query(updateQuery).result()
+print(&quot;Updated ID=2.&quot;)
+
+# 削除SQL生成
+deleteQuery = &quot;DELETE `{0}.{1}.{2}` WHERE id = 3&quot;.\
+    format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
+# SQL実行
+deleteRows = client.query(deleteQuery).result()
+
+print(&quot;deleted ID=3.&quot;)
+</code></pre><p>↓正常終了<br><img src="img/03py01.png" alt><br>ID＝2のデータが更新、ID＝3のデータが削除されていることを確認<br><img src="img/03py02.png" alt>  </p>
+<h2 id="ExportBigQuery04_pyの実行">7. ExportBigQuery04.pyの実行</h2>
+<p>★★★画像差し込み★★★<br>BigQueryのデータをCSVデータファイルとしてGCSバケットにエクスポートする  </p>
+<pre><code>python ExportBigQuery04.py
+</code></pre><p>▼中身</p>
+<pre><code>import os
+import OperationObject # 操作対象の設定情報取得
+from google.cloud import bigquery
+
+# GCS認証設定
+os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
+
+# テーブルIDの取得
+client = bigquery.Client(OperationObject.project_id)
+table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
+
+extract_job = client.extract_table(
+    table_id,
+    OperationObject.out_url_gs_example_csv,
+)  # API request
+extract_job.result()  # Waits for job to complete.
+
+print(
+    &quot;Exported {}:{}.{} to {}&quot;.format(
+        OperationObject.project_id,
+        OperationObject.dataset_id,
+        OperationObject.table_id,
+        OperationObject.out_url_gs_example_csv)
+)
+</code></pre><p>↓正常終了<br><img src="img/04py01.png" alt><br>BigQueryのデータが「out-gcs-example.csv」ファイルとしてGCSに出力されていることを確認<br><img src="img/04py02.png" alt><br>ダウンロードボタンでファイルをローカルにダウンロード<br><img src="img/04py03.png" alt><br>ダウンロードしたCSVファイルの中身で更新後の状態を確認<br><img src="img/04py04.png" alt>  </p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#各処理の実行と処理結果の確認">各処理の実行と処理結果の確認</a></p><li><a href="#カレントディレクトリの移動">1. カレントディレクトリの移動</a></li><li><a href="#Dockerでコンテナを起動">2. Dockerでコンテナを起動</a></li><li><a href="#カレントディレクトリの移動">3. カレントディレクトリの移動</a></li><li><a href="#GcsUploader01_pyの実行">4. GcsUploader01.pyの実行</a></li><li><a href="#GcsToBigQuery02_pyの実行">5. GcsToBigQuery02.pyの実行</a></li><li><a href="#UpdateDeleteBigQuery03_pyの実行">6. UpdateDeleteBigQuery03.pyの実行</a></li><li><a href="#ExportBigQuery04_pyの実行">7. ExportBigQuery04.pyの実行</a></li></ul></div><a href="#カレントディレクトリの移動" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -290,14 +376,10 @@ App Runnerサービスを作成するボタンをクリックします。
 
             
                 
-                <a href="Section3.html" class="navigation navigation-prev " aria-label="Previous page: 3. コンテナレジストリパターン">
+                <a href="Section3.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2. ダウンロードしたファイルの解凍と設定">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="Section5.html" class="navigation navigation-next " aria-label="Next page: 4. ソースコードリポジトリパターン">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -306,7 +388,7 @@ App Runnerサービスを作成するボタンをクリックします。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1. AppRunnerデプロイ","level":"1.4.1","depth":2,"next":{"title":"4. ソースコードリポジトリパターン","level":"1.5","depth":1,"path":"Section5.md","ref":"Section5.md","articles":[]},"previous":{"title":"3. コンテナレジストリパターン","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[{"title":"1. AppRunnerデプロイ","level":"1.4.1","depth":2,"path":"Section4.md","ref":"Section4.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"navigator":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section4.md","mtime":"2021-08-04T06:11:35.802Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-04T08:39:12.190Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3. 各処理の実行と処理結果の確認","level":"1.5","depth":1,"previous":{"title":"2. ダウンロードしたファイルの解凍と設定","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section4.md","mtime":"2021-09-11T00:43:22.612Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T01:32:04.746Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
@@ -377,6 +459,10 @@ App Runnerサービスを作成するボタンをクリックします。
     
         
         <script src="gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-insert-logo/plugin.js"></script>
         
     
         

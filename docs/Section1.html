@@ -3,7 +3,7 @@
 <html lang="ja" >
     <head>
         <meta charset="UTF-8">
-        <title>1. デモアプリクローン · mirameet</title>
+        <title>0. 事前準備内容の確認 · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="HonKit 3.6.20">
@@ -126,7 +126,7 @@
                 <a href="Section1.html">
             
                     
-                    1. デモアプリクローン
+                    0. 事前準備内容の確認
             
                 </a>
             
@@ -139,7 +139,7 @@
                 <a href="Section2.html">
             
                     
-                    2. アプリ動作確認
+                    1. GCP各種サービスの設定
             
                 </a>
             
@@ -152,7 +152,7 @@
                 <a href="Section3.html">
             
                     
-                    3. コンテナレジストリパターン
+                    2. ダウンロードしたファイルの解凍と設定
             
                 </a>
             
@@ -160,25 +160,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="Section5.html">
+        <li class="chapter " data-level="1.5" data-path="Section4.html">
             
-                <a href="Section5.html">
-            
-                    
-                    4. ソースコードリポジトリパターン
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6" data-path="Section7.html">
-            
-                <a href="Section7.html">
+                <a href="Section4.html">
             
                     
-                    5. ゴミ掃除
+                    3. 各処理の実行と処理結果の確認
             
                 </a>
             
@@ -216,7 +203,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >1. デモアプリクローン</a>
+        <a href="." >0. 事前準備内容の確認</a>
     </h1>
 </div>
 
@@ -231,25 +218,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="デモアプリクローン"><a name="デモアプリクローン" class="plugin-anchor" href="#デモアプリクローン"><i class="fa fa-link" aria-hidden="true"></i></a>デモアプリクローン</h1>
-<p>この手順では次の手順を進めていきます。<br><img src="img/49.png" alt>  </p>
-<h2 id="Githubリポジトリ表示">1. Githubリポジトリ表示</h2>
-<p>次のリンクよりデモアプリがあるGitHubリポジトリにアクセスします。<br>URL:<a href="https://github.com/miracleave-ltd/meet-up-20_app-runner" target="_blank">https://github.com/miracleave-ltd/meet-up-20_app-runner</a><br><img src="img/1.png" alt>  </p>
-<h2 id="リポジトリコピー">2. リポジトリコピー</h2>
-<p>Forkボタンをクリックします。<br><img src="img/2.png" alt><br>※Forkボタンをクリック後、Githubにログインしている方は自動で自分のリポジトリに遷移します。</p>
-<h2 id="クローン用URL取得">3. クローン用URL取得</h2>
-<p>自分のリポジトリにコピーされたアプリのURLをコピーします。<br><img src="img/3.png" alt>  </p>
-<h2 id="アプリクローン">4. アプリクローン</h2>
-<p>以下の操作を行い、GitHubよりアプリを取得します。 </p>
-<p>例：Desktopにクローンする場合(Windowsの方はスキップしてください。)</p>
-<pre><code>cd ~/Desktop
-</code></pre><p>アプリをクローンします。<br>GitHubよりコピーしたURLを使用してください。  </p>
-<pre><code>git clone [コピーしたURL]
-</code></pre><p>最終行に<code>done.</code>が表示されれば、完了です。  </p>
-<blockquote>
-<p>Cloning into &apos;meet-up-20_app-runner&apos;...<br>remote: Enumerating objects: 363, done.<br>remote: Counting objects: 100% (363/363), done.<br>remote: Compressing objects: 100% (289/289), done.<br>remote: Total 363 (delta 78), reused 329 (delta 54), pack-reused 0<br>Receiving objects: 100% (363/363), 8.38 MiB | 24.38 MiB/s, done.<br>Resolving deltas: 100% (78/78), done.  </p>
-</blockquote>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#デモアプリクローン">デモアプリクローン</a></p><li><a href="#Githubリポジトリ表示">1. Githubリポジトリ表示</a></li><li><a href="#リポジトリコピー">2. リポジトリコピー</a></li><li><a href="#クローン用URL取得">3. クローン用URL取得</a></li><li><a href="#アプリクローン">4. アプリクローン</a></li></ul></div><a href="#Githubリポジトリ表示" id="goTop"><i class="fa fa-arrow-up"></i></a>
+                                <h1 id="事前準備内容の確認"><a name="事前準備内容の確認" class="plugin-anchor" href="#事前準備内容の確認"><i class="fa fa-link" aria-hidden="true"></i></a>事前準備内容の確認</h1>
+<h2 id="GCPアカウントの確認">1. GCPアカウントの確認</h2>
+<p>ログインすると下記のようなダッシュボード画面が表示されます。<br><img src="img/dashboad.png" alt>  </p>
+<h2 id="Dockerの動作確認">2. Dockerの動作確認</h2>
+<p>試しに下記のコマンドを実行すると、docker-composeのバージョンが確認できます。  </p>
+<pre><code>docker-compose version
+</code></pre><p><img src="img/docker-compose_version.png" alt>  </p>
+<h2 id="ソースファイルの取得">3. ソースファイルの取得</h2>
+<p>画面右上の「Code」から「Download ZIP」を選択<br>ダウンロードしたファイルは後程使用します。<br><img src="img/Github.png" alt>  </p>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#事前準備内容の確認">事前準備内容の確認</a></p><li><a href="#GCPアカウントの確認">1. GCPアカウントの確認</a></li><li><a href="#Dockerの動作確認">2. Dockerの動作確認</a></li><li><a href="#ソースファイルの取得">3. ソースファイルの取得</a></li></ul></div><a href="#GCPアカウントの確認" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -281,7 +259,7 @@
                 </a>
                 
                 
-                <a href="Section2.html" class="navigation navigation-next " aria-label="Next page: 2. アプリ動作確認">
+                <a href="Section2.html" class="navigation navigation-next " aria-label="Next page: 1. GCP各種サービスの設定">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -292,7 +270,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"1. デモアプリクローン","level":"1.2","depth":1,"next":{"title":"2. アプリ動作確認","level":"1.3","depth":1,"path":"Section2.md","ref":"Section2.md","articles":[]},"previous":{"title":"はじめに","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section1.md","mtime":"2021-08-12T02:00:22.787Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-08-12T02:05:13.560Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"0. 事前準備内容の確認","level":"1.2","depth":1,"next":{"title":"1. GCP各種サービスの設定","level":"1.3","depth":1,"path":"Section2.md","ref":"Section2.md","articles":[]},"previous":{"title":"はじめに","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section1.md","mtime":"2021-09-11T00:11:57.695Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-11T01:32:04.746Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
