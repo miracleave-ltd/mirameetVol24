@@ -11,9 +11,12 @@
 
 ## 今回の流れ
 ![](img/draw_flow_0.png)  
-CSVファイルをGCS（GoogleCloudStroage）上にアップロード、  
-CSVファイルのデータをBigQueryに投入、  
-BigQuery内のデータを確認するバッチを作成し実行します。  
+Pythonで、以下処理を行うプログラムを実行します。
+①CSVファイルをGCS(GoogleCloudStrage)へアップロード
+②アップロードしたデータをBigQueryに投入
+③BigQueryに投入したデータを操作
+④BigQuery内のテーブルデータをGCSへエクスポート
+
 
 ## 技術要素
 公式サイトのリンクを記載しておきますので、参考にお使いください。  
