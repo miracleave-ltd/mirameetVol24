@@ -12,9 +12,9 @@
 ## 今回の流れ
 ![](img/draw_flow_0.png)  
 Pythonで、以下処理を行うプログラムを実行します。
-①CSVファイルをGCS(GoogleCloudStrage)へアップロード
-②アップロードしたデータをBigQueryに投入
-③BigQueryに投入したデータを操作
+①CSVファイルをGCS(GoogleCloudStrage)へアップロード  
+②アップロードしたデータをBigQueryに投入  
+③BigQueryに投入したデータを操作  
 ④BigQuery内のテーブルデータをGCSへエクスポート
 
 
