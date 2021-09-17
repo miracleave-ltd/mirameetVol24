@@ -71,7 +71,7 @@ CREATE TABLE mira_vol24.mira_example
 ```
 ※データセットIDを「mira_vol24」から変更した場合は、  
 　ご自身が指定したデータセットIDに置換して実行する必要があります  
-※先ほどDLしたソースファイルの\sql\mira_vol24.sql  の中にも同じSQLがあります  
+ 
 ↓実行完了  
 ![](img/BQ05.png)
 先ほど実行したクエリ通りのフィールドが表示されていることを確認  
@@ -83,3 +83,5 @@ CREATE TABLE mira_vol24.mira_example
 テーブルID＝mira_example
 ```
 を指定しています  
+
+※先ほどDLしたソースファイルの\sql\mira_vol24.sql  の中にも同じSQLがあります 
