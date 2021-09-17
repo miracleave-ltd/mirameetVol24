@@ -18,18 +18,18 @@ job_config = bigquery.LoadJobConfig(
         bigquery.SchemaField("work_date", "STRING")
     ],
     skip_leading_rows=0,
-    # The source format defaults to CSV, so the line below is optional.
+    # CSV形式
     source_format=bigquery.SourceFormat.CSV,
 )
 # 実行前にテーブルをトランケート
 job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 
-# GSバケットをロードし、テーブルに登録
+# GCSバケットをロードし、テーブルに登録
 load_job = client.load_table_from_uri(
     OperationObject.url_gs_example_csv, table_id, job_config=job_config
-)  # Make an API request.
+)  # GCSクライアントAPIへリクエスト
 
-load_job.result()  # Waits for the job to complete.
+load_job.result()  # リザルト結果を取得
 
-destination_table = client.get_table(table_id)  # Make an API request.
+destination_table = client.get_table(table_id)  # GCSクライアントAPIへリクエスト
 print("Loaded {} rows.".format(destination_table.num_rows))
