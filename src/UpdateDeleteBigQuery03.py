@@ -10,14 +10,13 @@ client = bigquery.Client()
 updateQuery = "UPDATE `{0}.{1}.{2}` SET mira_text = '更新' WHERE id = 2".\
     format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
 # SQL実行
-updateRows = client.query(updateQuery).result()
+client.query(updateQuery).result()
 print("Updated ID=2.")
 
 # 削除SQL生成
 deleteQuery = "DELETE `{0}.{1}.{2}` WHERE id = 3".\
     format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
 # SQL実行
-deleteRows = client.query(deleteQuery).result()
-
+client.query(deleteQuery).result()
 print("Deleted ID=3.")
 
