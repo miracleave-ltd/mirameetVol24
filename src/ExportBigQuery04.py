@@ -13,8 +13,8 @@ table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.tabl
 extract_job = client.extract_table(
     table_id,
     OperationObject.out_url_gs_example_csv,
-)  # API request
-extract_job.result()  # Waits for job to complete.
+)  # クライアントAPIへリクエスト
+extract_job.result() # extract_tableが終了するまで待機
 
 print(
     "Exported {}:{}.{} to {}".format(
