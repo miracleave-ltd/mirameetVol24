@@ -5,8 +5,9 @@ from google.cloud import bigquery
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# テーブルIDの取得
+# BigQueryクライアントAPIの利用宣言
 client = bigquery.Client(OperationObject.project_id)
+# テーブルIDの取得
 table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
 # データ取得結果をGCSバケットにエキスポート 
