@@ -5,7 +5,9 @@ from google.cloud import bigquery
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
+# BigQueryクライアントAPIの利用宣言
 client = bigquery.Client()
+
 # 更新SQL生成
 updateQuery = "UPDATE `{0}.{1}.{2}` SET mira_text = '更新' WHERE id = 2".\
     format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
