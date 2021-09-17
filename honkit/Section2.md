@@ -51,6 +51,9 @@ json形式のキーをダウンロード
 ![](img/BQ02.png)
 画面右側に「データセットを作成する」が出てくるので、「データセットID」を入力  
 ※今回は「mira_vol24」を指定  
+```
+mira_vol24
+``` 
 ![](img/BQ03.png)
 ↓完了  
 「▶プロジェクト名」の下に「▶mira_vol24」が作成される  
@@ -58,7 +61,10 @@ json形式のキーをダウンロード
 
 ## テーブルの作成  
 作成したデータセット「mira_vol24」に対して、クエリを実行し、テーブルを作成  
-※今回は「mira_example」を指定 
+※今回は「mira_example」を指定
+```
+mira_example
+``` 
 ![](img/BQ04.png)
 ```
 CREATE TABLE mira_vol24.mira_example
