@@ -36,7 +36,7 @@ from google.cloud import storage
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# GCSクライアント変数宣言
+# GCSクライアント利用宣言
 client = storage.Client()
 
 # GCSバケット取得
@@ -70,35 +70,38 @@ from google.cloud import bigquery
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# テーブルIDの取得
+# BigQueryクライアントAPIを利用宣言
 client = bigquery.Client(OperationObject.project_id)
+
+# テーブルIDの取得
 table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
 # テーブル設定宣言
 job_config = bigquery.LoadJobConfig(
+    # テーブルカラムマッピング情報の設定
     schema=[
         bigquery.SchemaField("id", "NUMERIC"),
         bigquery.SchemaField("mira_code", "STRING"),
         bigquery.SchemaField("mira_text", "STRING"),
         bigquery.SchemaField("work_date", "STRING")
     ],
+    # 読み込み開始行の指定（ヘッダ行がないため0を設定）
     skip_leading_rows=0,
-    # The source format defaults to CSV, so the line below is optional.
+    # ソースフォーマットの指定（CSV形式に設定）
     source_format=bigquery.SourceFormat.CSV,
 )
 # 実行前にテーブルをトランケート
 job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 
-# GSバケットをロードし、テーブルに登録
+# GCSバケットをロードし、テーブルに登録
 load_job = client.load_table_from_uri(
     OperationObject.url_gs_example_csv, table_id, job_config=job_config
-)  # Make an API request.
+)  # クライアントAPIへリクエスト
 
-load_job.result()  # Waits for the job to complete.
+load_job.result()  # load_table_from_uriが終了するまで待機
 
-destination_table = client.get_table(table_id)  # Make an API request.
+destination_table = client.get_table(table_id)  # クライアントAPIへリクエスト（テーブル情報を取得）
 print("Loaded {} rows.".format(destination_table.num_rows))
-
 ```
 ↓正常終了  
 ![](img/02py01.png)  
@@ -121,21 +124,22 @@ from google.cloud import bigquery
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
+# BigQueryクライアントAPIの利用宣言
 client = bigquery.Client()
+
 # 更新SQL生成
 updateQuery = "UPDATE `{0}.{1}.{2}` SET mira_text = '更新' WHERE id = 2".\
     format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
 # SQL実行
-updateRows = client.query(updateQuery).result()
+client.query(updateQuery).result()
 print("Updated ID=2.")
 
 # 削除SQL生成
 deleteQuery = "DELETE `{0}.{1}.{2}` WHERE id = 3".\
     format(OperationObject.project_id, OperationObject.dataset_id, OperationObject.table_id)
 # SQL実行
-deleteRows = client.query(deleteQuery).result()
-
-print("deleted ID=3.")
+client.query(deleteQuery).result()
+print("Deleted ID=3.")
 ```
 ↓正常終了  
 ![](img/03py01.png)  
@@ -157,15 +161,18 @@ from google.cloud import bigquery
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# テーブルIDの取得
+# BigQueryクライアントAPIの利用宣言
 client = bigquery.Client(OperationObject.project_id)
+# テーブルIDの取得
 table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
+# データ取得結果をGCSバケットにエキスポート 
 extract_job = client.extract_table(
     table_id,
     OperationObject.out_url_gs_example_csv,
-)  # API request
-extract_job.result()  # Waits for job to complete.
+)  # クライアントAPIへリクエスト
+
+extract_job.result() # extract_tableが終了するまで待機
 
 print(
     "Exported {}:{}.{} to {}".format(
