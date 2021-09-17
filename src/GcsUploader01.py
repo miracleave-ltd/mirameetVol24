@@ -5,10 +5,10 @@ from google.cloud import storage
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# GCSクライアント変数宣言
+# GCSクライアント利用宣言
 client = storage.Client()
 
-# GSバケット取得
+# GCSバケット取得
 bucket = client.get_bucket(OperationObject.bucket_name)
 
 # CSVファイルアップロード
