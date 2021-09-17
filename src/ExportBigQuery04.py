@@ -9,11 +9,12 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATIO
 client = bigquery.Client(OperationObject.project_id)
 table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
-#　データ取得結果をGCSバケットにエキスポート 
+# データ取得結果をGCSバケットにエキスポート 
 extract_job = client.extract_table(
     table_id,
     OperationObject.out_url_gs_example_csv,
 )  # クライアントAPIへリクエスト
+
 extract_job.result() # extract_tableが終了するまで待機
 
 print(
