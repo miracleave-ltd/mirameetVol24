@@ -29,7 +29,7 @@ load_job = client.load_table_from_uri(
     OperationObject.url_gs_example_csv, table_id, job_config=job_config
 )  # GCSクライアントAPIへリクエスト
 
-load_job.result()  # リザルト結果を取得
+load_job.result()  # load_table_from_uriが終了するまで待機
 
 destination_table = client.get_table(table_id)  # GCSクライアントAPIへリクエスト
 print("Loaded {} rows.".format(destination_table.num_rows))
