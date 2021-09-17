@@ -5,20 +5,22 @@ from google.cloud import bigquery
 # GCS認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# テーブルIDの取得
+# BigQueryクライアントAPIを利用しテーブルIDの取得
 client = bigquery.Client(OperationObject.project_id)
 table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
 # テーブル設定宣言
 job_config = bigquery.LoadJobConfig(
+    # テーブルカラムマッピング情報の設定
     schema=[
         bigquery.SchemaField("id", "NUMERIC"),
         bigquery.SchemaField("mira_code", "STRING"),
         bigquery.SchemaField("mira_text", "STRING"),
         bigquery.SchemaField("work_date", "STRING")
     ],
+    # 読み込み開始行の指定（ヘッダ行がないため0を設定）
     skip_leading_rows=0,
-    # CSV形式
+    # ソースフォーマットの指定（CSV形式に設定）
     source_format=bigquery.SourceFormat.CSV,
 )
 # 実行前にテーブルをトランケート
