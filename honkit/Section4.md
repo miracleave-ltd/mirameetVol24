@@ -21,8 +21,8 @@ srcディレクトリまで移動
 cd ～～～mirameetVol24-main\src
 ```
 
-## GcsUploader01.pyの実行  
-★★★画像差し込み★★★  
+## GcsUploader01.pyの実行 
+![](img/draw_flow_3-1.png)  
 CSVデータファイルをGCSバケット上にアップロードする  
 ```
 python GcsUploader01.py
@@ -56,7 +56,7 @@ mirameetVol24-main\src\csvの中の「gcs-example.csv」が、GCSにアップロ
 ![](img/01py02.png)  
 
 ## GcsToBigQuery02.pyの実行  
-★★★画像差し込み★★★  
+![](img/draw_flow_3-2.png)  
 GCSにアップロードしたCSVデータをBigQueryにインサートする  
 ```
 python GcsToBigQuery02.py
@@ -110,7 +110,7 @@ print("Loaded {} rows.".format(destination_table.num_rows))
 ![](img/02py03.png)  
 
 ## UpdateDeleteBigQuery03.pyの実行  
-★★★画像差し込み★★★  
+![](img/draw_flow_3-3.png)  
 BigQueryのデータを更新・削除する  
 ```
 python UpdateDeleteBigQuery03.py
@@ -147,7 +147,7 @@ ID＝2のデータが更新、ID＝3のデータが削除されていること�
 ![](img/03py02.png)  
 
 ## ExportBigQuery04.pyの実行  
-★★★画像差し込み★★★  
+![](img/draw_flow_3-4.png)  
 BigQueryのデータをCSVデータファイルとしてGCSバケットにエクスポートする  
 ```
 python ExportBigQuery04.py
