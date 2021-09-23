@@ -2,7 +2,7 @@ import os
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIの利用宣言
