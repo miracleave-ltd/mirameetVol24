@@ -29,9 +29,9 @@ job_config = bigquery.LoadJobConfig(
 # GCSバケットをロードし、テーブルに登録
 load_job = client.load_table_from_uri(
     OperationObject.url_gs_example_csv, table_info, job_config=job_config
-)  # クライアントAPIへリクエスト
+)
 
 load_job.result()  # load_table_from_uriが終了するまで待機
 
-destination_table = client.get_table(table_info)  # クライアントAPIへリクエスト（テーブル情報を取得）
-print("Loaded {} rows.".format(destination_table.num_rows))
+regist_table_info = client.get_table(table_info)  # 登録後のテーブル情報取得
+print("Loaded {} rows.".format(regist_table_info.num_rows))
