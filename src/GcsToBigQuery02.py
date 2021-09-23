@@ -11,7 +11,7 @@ client = bigquery.Client(OperationObject.project_id)
 # テーブル情報の取得
 table_info = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
-# JOB設定情報の定義を実施
+# 登録対象のテーブル定義を設定
 job_config = bigquery.LoadJobConfig(
     # テーブルカラムマッピング情報の設定
     schema=[
