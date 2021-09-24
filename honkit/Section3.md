@@ -68,7 +68,7 @@ dataset_id = "mira_vol24"
 table_id = "mira-example"
 ```
 
-## ダウンロードしたjson形式keyファイルの配置  
+## ダウンロードしたjson形式の秘密鍵ファイルの配置  
 ・ファイル名を下記に変更  
 ```
 key.json
