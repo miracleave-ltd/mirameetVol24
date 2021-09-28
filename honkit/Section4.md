@@ -15,11 +15,12 @@ docker-compose up -d --build
 ```
 ![](img/docker-build.png)  
 
-## カレントディレクトリの移動  
-srcディレクトリまで移動  
-```
-cd ～～～mirameetVol24-main\src
-```
+
+## 起動したDockerコンテナに接続  
+```  
+docker-compose exec app bash
+```  
+
 
 ## GcsUploader01.pyの実行 
 ![](img/draw_flow_3-1.png)  
