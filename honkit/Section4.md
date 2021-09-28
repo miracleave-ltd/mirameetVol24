@@ -33,10 +33,10 @@ import os
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import storage
 
-# GCS認証設定
+# GCP認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# GCSクライアント利用宣言
+# GCSクライアントAPIの利用宣言
 client = storage.Client()
 
 # GCSバケット取得
@@ -67,16 +67,16 @@ import os
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIを利用宣言
 client = bigquery.Client(OperationObject.project_id)
 
-# テーブルIDの取得
-table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
+# テーブル情報の取得
+table_info = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
-# テーブル設定宣言
+# 登録対象のテーブル定義を設定
 job_config = bigquery.LoadJobConfig(
     # テーブルカラムマッピング情報の設定
     schema=[
@@ -90,18 +90,16 @@ job_config = bigquery.LoadJobConfig(
     # ソースフォーマットの指定（CSV形式に設定）
     source_format=bigquery.SourceFormat.CSV,
 )
-# 実行前にテーブルをトランケート
-job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 
 # GCSバケットをロードし、テーブルに登録
 load_job = client.load_table_from_uri(
-    OperationObject.url_gs_example_csv, table_id, job_config=job_config
-)  # クライアントAPIへリクエスト
+    OperationObject.url_gs_example_csv, table_info, job_config=job_config
+)
 
 load_job.result()  # load_table_from_uriが終了するまで待機
 
-destination_table = client.get_table(table_id)  # クライアントAPIへリクエスト（テーブル情報を取得）
-print("Loaded {} rows.".format(destination_table.num_rows))
+regist_table_info = client.get_table(table_info)  # 登録後のテーブル情報取得
+print("Loaded {} rows.".format(regist_table_info.num_rows))
 ```
 ↓正常終了  
 ![](img/02py01.png)  
@@ -121,7 +119,7 @@ import os
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIの利用宣言
@@ -158,19 +156,19 @@ import os
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIの利用宣言
 client = bigquery.Client(OperationObject.project_id)
-# テーブルIDの取得
-table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
+# テーブル情報の取得
+table_info = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
 # データ取得結果をGCSバケットにエキスポート 
 extract_job = client.extract_table(
-    table_id,
+    table_info,
     OperationObject.out_url_gs_example_csv,
-)  # クライアントAPIへリクエスト
+)
 
 extract_job.result() # extract_tableが終了するまで待機
 
