@@ -189,4 +189,3 @@ BigQueryのデータが「out-gcs-example.csv」ファイルとしてGCSに出�
 ![](img/04py03.png)  
 ダウンロードしたCSVファイルの中身で更新後の状態を確認  
 ![](img/04py04.png)  
-
