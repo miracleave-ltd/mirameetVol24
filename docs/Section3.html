@@ -6,7 +6,7 @@
         <title>2. ダウンロードしたファイルの解凍と設定 · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.20">
+        <meta name="generator" content="HonKit 3.6.21">
         
         
         
@@ -232,7 +232,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="ダウンロードしたファイルの解凍と設定"><a name="ダウンロードしたファイルの解凍と設定" class="plugin-anchor" href="#ダウンロードしたファイルの解凍と設定"><i class="fa fa-link" aria-hidden="true"></i></a>ダウンロードしたファイルの解凍と設定</h1>
-<p>この手順では、GithubからダウンロードしたZipファイルを任意のディレクトリで解凍し、コーディングしていきます。
+<p>この手順では、GithubからダウンロードしたZipファイルを任意のディレクトリで解凍し、設定していきます。
 <img src="img/draw_flow_2.png" alt>  </p>
 <h2 id="OperationObject_pyの編集">1. OperationObject.pyの編集</h2>
 <pre><code># ------------------------------------------------------
@@ -243,12 +243,12 @@ GOOGLE_APPLICATION_CREDENTIALS=&apos;./credential/key.json&apos;
 # CSVコピー元
 source_file_name = &apos;./csv/gcs-example.csv&apos;
 
-# CSV配置先
+# CSVアップロード先
 url_gs_example_csv=&quot;gs://mira-example/gcs-example.csv&quot; # 手順1.1
-# CSVダウンロード先
+# CSVエクスポート先
 out_url_gs_example_csv=&quot;gs://mira-example/out-gcs-example.csv&quot; # 手順1.1
 
-# GCSバケット
+# GCSバケット名
 bucket_name = &quot;mira-example&quot; # 手順1.2
 
 # 操作テーブル
@@ -329,7 +329,7 @@ project_id = &quot;neural-sol-325512&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2. ダウンロードしたファイルの解凍と設定","level":"1.4","depth":1,"next":{"title":"3. 各処理の実行と処理結果の確認","level":"1.5","depth":1,"path":"Section4.md","ref":"Section4.md","articles":[]},"previous":{"title":"1. GCP各種サービスの設定","level":"1.3","depth":1,"path":"Section2.md","ref":"Section2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section3.md","mtime":"2021-09-27T02:47:55.584Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-27T02:53:41.152Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2. ダウンロードしたファイルの解凍と設定","level":"1.4","depth":1,"next":{"title":"3. 各処理の実行と処理結果の確認","level":"1.5","depth":1,"path":"Section4.md","ref":"Section4.md","articles":[]},"previous":{"title":"1. GCP各種サービスの設定","level":"1.3","depth":1,"path":"Section2.md","ref":"Section2.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section3.md","mtime":"2021-09-29T01:59:45.748Z","type":"markdown"},"gitbook":{"version":"3.6.21","time":"2021-09-29T02:54:29.678Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

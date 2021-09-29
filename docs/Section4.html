@@ -6,7 +6,7 @@
         <title>3. 各処理の実行と処理結果の確認 · mirameet</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="HonKit 3.6.20">
+        <meta name="generator" content="HonKit 3.6.21">
         
         
         
@@ -240,10 +240,10 @@
 </code></pre><h2 id="Dockerでコンテナを起動">2. Dockerでコンテナを起動</h2>
 <pre><code>docker-compose up -d --build
 </code></pre><p><img src="img/docker-build.png" alt>  </p>
-<h2 id="カレントディレクトリの移動">3. カレントディレクトリの移動</h2>
-<p>srcディレクトリまで移動  </p>
-<pre><code>cd ～～～mirameetVol24-main\src
-</code></pre><h2 id="GcsUploader01_pyの実行">4. GcsUploader01.pyの実行</h2>
+<h2 id="起動したDockerコンテナに接続">3. 起動したDockerコンテナに接続</h2>
+<pre><code>docker-compose exec app bash
+</code></pre><p><img src="img/dockerbash.png" alt>  </p>
+<h2 id="GcsUploader01_pyの実行">4. GcsUploader01.pyの実行</h2>
 <p><img src="img/draw_flow_3-1.png" alt><br>CSVデータファイルをGCSバケット上にアップロードする  </p>
 <pre><code>python GcsUploader01.py
 </code></pre><p>▼中身</p>
@@ -251,10 +251,10 @@
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import storage
 
-# GCS認証設定
+# GCP認証設定
 os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
-# GCSクライアント利用宣言
+# GCSクライアントAPIの利用宣言
 client = storage.Client()
 
 # GCSバケット取得
@@ -276,16 +276,16 @@ print(&apos;File {} uploaded to {}.&apos;.format(
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIを利用宣言
 client = bigquery.Client(OperationObject.project_id)
 
-# テーブルIDの取得
-table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
+# テーブル情報の取得
+table_info = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
-# テーブル設定宣言
+# 登録対象のテーブル定義を設定
 job_config = bigquery.LoadJobConfig(
     # テーブルカラムマッピング情報の設定
     schema=[
@@ -299,18 +299,16 @@ job_config = bigquery.LoadJobConfig(
     # ソースフォーマットの指定（CSV形式に設定）
     source_format=bigquery.SourceFormat.CSV,
 )
-# 実行前にテーブルをトランケート
-job_config.write_disposition = bigquery.WriteDisposition.WRITE_TRUNCATE
 
 # GCSバケットをロードし、テーブルに登録
 load_job = client.load_table_from_uri(
-    OperationObject.url_gs_example_csv, table_id, job_config=job_config
-)  # クライアントAPIへリクエスト
+    OperationObject.url_gs_example_csv, table_info, job_config=job_config
+)
 
 load_job.result()  # load_table_from_uriが終了するまで待機
 
-destination_table = client.get_table(table_id)  # クライアントAPIへリクエスト（テーブル情報を取得）
-print(&quot;Loaded {} rows.&quot;.format(destination_table.num_rows))
+regist_table_info = client.get_table(table_info)  # 登録後のテーブル情報取得
+print(&quot;Loaded {} rows.&quot;.format(regist_table_info.num_rows))
 </code></pre><p>↓正常終了<br><img src="img/02py01.png" alt><br>「gcs-example.csv」の中のデータがBigQueryにインサートされていることを確認<br>プレビュータグでデータの中身を確認<br><img src="img/02py03.png" alt>  </p>
 <h2 id="UpdateDeleteBigQuery03_pyの実行">6. UpdateDeleteBigQuery03.pyの実行</h2>
 <p><img src="img/draw_flow_3-3.png" alt><br>BigQueryのデータを更新・削除する  </p>
@@ -320,7 +318,7 @@ print(&quot;Loaded {} rows.&quot;.format(destination_table.num_rows))
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIの利用宣言
@@ -348,19 +346,19 @@ print(&quot;Deleted ID=3.&quot;)
 import OperationObject # 操作対象の設定情報取得
 from google.cloud import bigquery
 
-# GCS認証設定
+# GCP認証設定
 os.environ[&apos;GOOGLE_APPLICATION_CREDENTIALS&apos;] = OperationObject.GOOGLE_APPLICATION_CREDENTIALS
 
 # BigQueryクライアントAPIの利用宣言
 client = bigquery.Client(OperationObject.project_id)
-# テーブルIDの取得
-table_id = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
+# テーブル情報の取得
+table_info = client.dataset(OperationObject.dataset_id).table(OperationObject.table_id)
 
 # データ取得結果をGCSバケットにエキスポート 
 extract_job = client.extract_table(
-    table_id,
+    table_info,
     OperationObject.out_url_gs_example_csv,
-)  # クライアントAPIへリクエスト
+)
 
 extract_job.result() # extract_tableが終了するまで待機
 
@@ -372,7 +370,7 @@ print(
         OperationObject.out_url_gs_example_csv)
 )
 </code></pre><p>↓正常終了<br><img src="img/04py01.png" alt><br>BigQueryのデータが「out-gcs-example.csv」ファイルとしてGCSに出力されていることを確認<br><img src="img/04py02.png" alt><br>ダウンロードボタンでファイルをローカルにダウンロード<br><img src="img/04py03.png" alt><br>ダウンロードしたCSVファイルの中身で更新後の状態を確認<br><img src="img/04py04.png" alt>  </p>
-<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#各処理の実行と処理結果の確認">各処理の実行と処理結果の確認</a></p><li><a href="#カレントディレクトリの移動">1. カレントディレクトリの移動</a></li><li><a href="#Dockerでコンテナを起動">2. Dockerでコンテナを起動</a></li><li><a href="#カレントディレクトリの移動">3. カレントディレクトリの移動</a></li><li><a href="#GcsUploader01_pyの実行">4. GcsUploader01.pyの実行</a></li><li><a href="#GcsToBigQuery02_pyの実行">5. GcsToBigQuery02.pyの実行</a></li><li><a href="#UpdateDeleteBigQuery03_pyの実行">6. UpdateDeleteBigQuery03.pyの実行</a></li><li><a href="#ExportBigQuery04_pyの実行">7. ExportBigQuery04.pyの実行</a></li></ul></div><a href="#カレントディレクトリの移動" id="goTop"><i class="fa fa-arrow-up"></i></a>
+<div id="anchors-navbar"><i class="fa fa-anchor"></i><ul><p><a href="#各処理の実行と処理結果の確認">各処理の実行と処理結果の確認</a></p><li><a href="#カレントディレクトリの移動">1. カレントディレクトリの移動</a></li><li><a href="#Dockerでコンテナを起動">2. Dockerでコンテナを起動</a></li><li><a href="#起動したDockerコンテナに接続">3. 起動したDockerコンテナに接続</a></li><li><a href="#GcsUploader01_pyの実行">4. GcsUploader01.pyの実行</a></li><li><a href="#GcsToBigQuery02_pyの実行">5. GcsToBigQuery02.pyの実行</a></li><li><a href="#UpdateDeleteBigQuery03_pyの実行">6. UpdateDeleteBigQuery03.pyの実行</a></li><li><a href="#ExportBigQuery04_pyの実行">7. ExportBigQuery04.pyの実行</a></li></ul></div><a href="#カレントディレクトリの移動" id="goTop"><i class="fa fa-arrow-up"></i></a>
                                 
                                 </section>
                             
@@ -415,7 +413,7 @@ print(
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3. 各処理の実行と処理結果の確認","level":"1.5","depth":1,"next":{"title":"4. おまけ","level":"1.6","depth":1,"path":"Section5.md","ref":"Section5.md","articles":[]},"previous":{"title":"2. ダウンロードしたファイルの解凍と設定","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section4.md","mtime":"2021-09-27T02:47:55.584Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-09-27T02:53:41.152Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3. 各処理の実行と処理結果の確認","level":"1.5","depth":1,"next":{"title":"4. おまけ","level":"1.6","depth":1,"path":"Section5.md","ref":"Section5.md","articles":[]},"previous":{"title":"2. ダウンロードしたファイルの解凍と設定","level":"1.4","depth":1,"path":"Section3.md","ref":"Section3.md","articles":[]},"dir":"ltr"},"config":{"plugins":["search-pro-fixed","-lunr","-search","hide-published-with","anchors","navigator","collapsible-chapters","hints","copy-code-button","custom-favicon","insert-logo"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"collapsible-chapters":{},"hints":{"info":"fa fa-info-circle","tip":"fa fa-mortar-board","danger":"fa fa-exclamation-circle","working":"fa fa-wrench"},"search-pro-fixed":{},"hide-published-with":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./img/miracleave.ico","navigator":{},"custom-favicon":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"insert-logo":{"url":"./img/miracleave.png","style":"background: none; width: 100%;"}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"mirameet","language":"ja","gitbook":"*"},"file":{"path":"Section4.md","mtime":"2021-09-29T01:59:45.748Z","type":"markdown"},"gitbook":{"version":"3.6.21","time":"2021-09-29T02:54:29.678Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
