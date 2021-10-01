@@ -17,8 +17,7 @@
 
 
 ## Dockerコンテナの停止  
-'''
+```
+docker-compose down
+```
 
-
-
-'''
