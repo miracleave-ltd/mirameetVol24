@@ -17,7 +17,16 @@
 
 
 ## Dockerコンテナの停止  
+起動中のコンテナの確認  
+```
+docker-compose ps
+```
+コンテナの停止  
 ```
 docker-compose down
 ```
-
+コンテナが停止されたことの確認  
+```
+docker-compose ps
+```
+![](img/docker_down.png)  
